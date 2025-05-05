@@ -1,44 +1,39 @@
-import js from "@eslint/js";
-import globals from "globals";
-import tseslint from "typescript-eslint";
-import pluginReact from "eslint-plugin-react";
-import pluginReactHooks from "eslint-plugin-react-hooks";
-import prettier from "eslint-config-prettier";
-import { defineConfig } from "eslint/config";
+import eslintPluginReact from 'eslint-plugin-react';
+import eslintPluginReactHooks from 'eslint-plugin-react-hooks';
+import prettier from 'eslint-plugin-prettier';
+import eslintConfigPrettier from 'eslint-config-prettier';
+import typescriptEslint from 'typescript-eslint';
 
-export default defineConfig([
+export default [
   {
-    files: ["**/*.{js,cjs,mjs,ts,jsx,tsx}"],
+    files: ['**/*.ts', '**/*.tsx'],
     languageOptions: {
-      parser: tseslint.parser,
+      parser: typescriptEslint.parser,
       parserOptions: {
-        project: "./tsconfig.json",
-        ecmaVersion: "latest",
-        sourceType: "module",
-        ecmaFeatures: {
-          jsx: true,
-        },
-      },
-      globals: {
-        ...globals.browser,
-        ...globals.node,
+        project: './tsconfig.eslint.json',
       },
     },
     plugins: {
-      "@typescript-eslint": tseslint.plugin,
-      react: pluginReact,
-      "react-hooks": pluginReactHooks,
+      '@typescript-eslint': typescriptEslint.plugin,
+      react: eslintPluginReact,
+      'react-hooks': eslintPluginReactHooks,
+      prettier,
     },
     rules: {
-      ...tseslint.configs.recommended.rules,
-      ...pluginReact.configs.flat.recommended.rules,
-      ...pluginReactHooks.configs.recommended.rules,
-      "react/react-in-jsx-scope": "off", 
+      ...typescriptEslint.configs.recommended.rules,
+      ...eslintPluginReact.configs.recommended.rules,
+      'react/react-in-jsx-scope': 'off', // ✅ disable for React 17+
+      'prettier/prettier': 'error',
+    },
+    settings: {
+      react: {
+        version: 'detect',
+        pragma: 'React',
+        fragment: 'Fragment',
+      },
     },
   },
   {
-    rules: {
-      ...prettier.rules,
-    },
+    ignores: ['node_modules', 'dist', '.husky', 'vite.config.ts', 'eslint.config.js'],
   },
-]);
+];
