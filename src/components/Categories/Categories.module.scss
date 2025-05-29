@@ -1,0 +1,15 @@
+@use "../../styles/mixins.scss" as *;
+
+
+.categories {
+
+  &__title {
+    margin: 0;
+    grid-column: 1 / -1;
+  }
+
+  &__list {
+    @include responsive-grid(16px);
+    
+  }
+}

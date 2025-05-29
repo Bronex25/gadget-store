@@ -1,31 +1,55 @@
-import { useState } from 'react';
-import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
-import './App.css';
+import React from 'react';
+import './App.scss';
+import { HomePage } from './pages/HomePage';
+import { Header } from './components/Header/Header';
+import { Navigate, Route, Routes } from 'react-router-dom';
+import { Footer } from './components/Footer';
+import { ItemsPage } from './pages/ItemsPage/ItemsPage';
+import { FavoritesPage } from './pages/FavoritesPage/FavoritesPage';
 
-function App() {
-  const [count, setCount] = useState(0);
-
+export const App: React.FC = () => {
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank" rel="noreferrer">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank" rel="noreferrer">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <Header></Header>
+
+      <div className="container">
+        <Routes>
+          <Route path="" element={<HomePage />}></Route>
+          <Route path="home" element={<Navigate to="/" replace />}></Route>
+          <Route
+            path="phones"
+            element={
+              <ItemsPage
+                pageName="Mobile Phones"
+                title="Phones"
+                totalModels={24}
+              />
+            }
+          ></Route>
+          <Route
+            path="tablets"
+            element={
+              <ItemsPage pageName="Tablets" title="Tablets" totalModels={103} />
+            }
+          ></Route>
+          <Route
+            path="accessories"
+            element={
+              <ItemsPage
+                pageName="Accessories"
+                title="Accessories"
+                totalModels={122}
+              />
+            }
+          ></Route>
+          <Route path="favorites" element={<FavoritesPage />}></Route>
+          <Route path="*" element={<h1 className="title">Page not found</h1>} />
+        </Routes>
+
+        <Footer />
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>count is {count}</button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">Click on the Vite and React logos to learn more</p>
     </>
   );
-}
+};
 
 export default App;

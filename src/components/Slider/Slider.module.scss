@@ -1,0 +1,208 @@
+@import '../../styles/variables.scss';
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  grid-column: 1 / -1;
+  gap: 16px;
+}
+
+.slider {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  height: auto;
+
+  @media (min-width: $tablet-min-width) {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+}
+
+.sliderButton {
+  display: none;
+
+  @media (min-width: $tablet-min-width) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 32px;
+    height: 100%;
+    border: 1px solid $color-elements;
+    border-radius: 48px;
+    background-color: $color-white;
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+      border: 1px solid $color-secondary;
+    }
+  }
+}
+
+.sliderButtonIcon {
+  width: 16px;
+  height: 16px;
+}
+
+
+.banner {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  background-color: $color-primary;
+  border-radius: 8px;
+
+  @media (min-width: $tablet-min-width) {
+    flex-direction: row;
+    justify-content: space-between;
+    height: fit-content;
+  }
+
+  @media (min-width: $desktop-min-width) {
+    height: 400px;
+  }
+}
+
+.bannerLeft {
+  box-sizing: border-box;
+  padding: 24px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  @media (min-width: $tablet-min-width) {
+    border-radius: 24px;
+    background-color: rgb(31, 35, 33);
+    width: 40%;
+    height: 90%;
+    margin: 1%;
+    padding: 5%;
+  }
+}
+
+.bannerLeftContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+}
+
+.bannerLeftTitle {
+  font-family: $font-family;
+  font-weight: 800;
+  font-size: 32px;
+  line-height: 1.2;
+  background: linear-gradient(90deg, #6a5af9, #b65fcf);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+
+  @media (min-width: $tablet-min-width) {
+    font-size: 42px;
+  }
+}
+
+.bannerLeftText {
+  font-family: $font-family;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: $color-secondary;
+}
+
+.bannerLeftButton {
+  padding: 1rem 2rem;
+  height: 42px;
+  width: fit-content;
+  border-radius: 36px;
+  color: $color-white;
+  background-color: transparent;
+  font-weight: 400;
+  font-size: 14px;
+  border: 0.5px solid $color-secondary;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bannerRight {
+  box-sizing: border-box;
+  width: 100%;
+  border-radius: 16px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+
+  @media (min-width: $tablet-min-width) {
+    width: 60%;
+    height: 100%;
+    padding: 32px 32px 0px 32px;
+  }
+}
+
+.bannerRightImage {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.bannerRightContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 24px;
+}
+
+.bannerRightText {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: $color-secondary;
+  margin-top: 1rem;
+}
+
+.bannerRightTitle {
+  color: $color-white;
+  font-weight: 600;
+  font-size: 24px;
+
+  @media (min-width: $tablet-min-width) {
+    font-size: 32px;
+  }
+}
+
+.nav {
+  width: 80px;
+  height: fit-content;
+  display: flex;
+  gap: 8px;
+} 
+
+.navButton {
+  all: unset;
+  cursor: pointer;
+  width: 14px;
+  height: 4px;
+  background-color: $color-elements;
+}
+
+.navButtonActive {
+  background-color: $color-primary;
+}
+

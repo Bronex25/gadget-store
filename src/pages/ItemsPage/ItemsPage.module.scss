@@ -1,0 +1,81 @@
+@use '../../styles/variables.scss' as *;
+
+.mobilePage {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  gap: 16px;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.route {
+  display: flex;
+  gap: 8px;
+
+  &__icon {
+    width: $icon-size;
+    height: $icon-size;
+  }
+
+  &__text {
+    color: $color-secondary;
+  }
+}
+
+.title {
+  font-weight: 800;
+  font-size: 48px;
+  line-height: 56px;
+}
+
+.models {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 21px;
+  color: $color-secondary;
+}
+
+.settings {
+  display: flex;
+  margin-top: 2rem;
+  gap: 16px;
+
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__select {
+ 
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  padding: 8px 36px 8px 12px; 
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: white;
+  color: $color-primary;
+  font-size: 14px;
+  width: 100%;
+  cursor: pointer;
+
+  background-image: url('/img/arrow-down.svg');
+  background-repeat: no-repeat;
+  background-position: right 12px center; 
+  background-size: 10px 6px;
+  }
+}
+
+label {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 21px;
+  color: $color-secondary;
+}
+
+.item-list {
+  display: flex;
+}

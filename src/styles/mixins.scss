@@ -1,0 +1,19 @@
+@mixin responsive-grid($gap: 16px) {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: $gap;
+
+  @media (min-width: 640px) {
+    grid-template-columns: repeat(12, 1fr);
+  }
+
+  @media (min-width: 1200px) {
+    grid-template-columns: repeat(24, 1fr);
+  }
+}
+
+@mixin center-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

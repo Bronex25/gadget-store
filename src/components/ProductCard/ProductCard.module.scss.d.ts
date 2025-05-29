@@ -1,0 +1,15 @@
+export declare const addButton: string;
+export declare const card: string;
+export declare const cardLink: string;
+export declare const controls: string;
+export declare const favoriteButton: string;
+export declare const favoriteButtonActive: string;
+export declare const image: string;
+export declare const oldPrice: string;
+export declare const price: string;
+export declare const priceContainer: string;
+export declare const specs: string;
+export declare const specsTitle: string;
+export declare const specsTitles: string;
+export declare const specsValues: string;
+export declare const title: string;

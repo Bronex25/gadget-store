@@ -1,0 +1,10 @@
+export declare const itemList: string;
+export declare const mobilePage: string;
+export declare const models: string;
+export declare const route: string;
+export declare const routeIcon: string;
+export declare const routeText: string;
+export declare const settings: string;
+export declare const settingsSelect: string;
+export declare const settingsWrapper: string;
+export declare const title: string;

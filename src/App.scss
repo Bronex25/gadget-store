@@ -1,0 +1,6 @@
+@use './styles/mixins.scss' as *;
+
+.container {
+  @include responsive-grid(16px);
+  margin: 0 auto;
+}

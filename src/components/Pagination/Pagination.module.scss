@@ -1,0 +1,53 @@
+@use '../../styles/variables.scss' as *;
+
+
+$item-size: 40px;
+
+.pagination {
+  margin: 0 auto;
+  width:fit-content;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
+  display: flex;
+  gap: 8px;
+
+
+
+
+  &__link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    font-size: 14px;
+    color: $color-primary;
+    width: $item-size;
+    height: $item-size;
+    border: 1px solid $color-elements;
+    border-radius: 50%;
+
+    &:hover {
+      border-color: black;
+      transition: all ease-in-out 0.3s;
+    }
+
+    &--active {
+      @extend .pagination__link;
+      color: $color-background;
+      background-color: $color-primary;
+    }
+  }
+
+  &__nav-link {
+    @extend .pagination__link;
+    border-color: $color-secondary;
+    margin: 0 8px ;
+  }
+
+  &__icon {
+    width: $icon-size;
+    height: $icon-size;
+  }
+}
+

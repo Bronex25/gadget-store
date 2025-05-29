@@ -1,0 +1,11 @@
+export declare const active: string;
+export declare const burgerMenu: string;
+export declare const container: string;
+export declare const header: string;
+export declare const icon: string;
+export declare const link: string;
+export declare const logo: string;
+export declare const menu: string;
+export declare const navBar: string;
+export declare const navItem: string;
+export declare const shopping: string;
