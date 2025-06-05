@@ -1,11 +1,43 @@
+import { NavLink } from 'react-router-dom';
 import styles from './Slider.module.scss';
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 export const Slider: React.FC = () => {
+  const [slideIndex, setSlideIndex] = useState(0);
+
+  const totalSlides = 3;
+
+  const handleNextSlide = () => {
+    setSlideIndex(prevIndex => (prevIndex + 1) % totalSlides);
+  };
+  const handlePrevSlide = () => {
+    setSlideIndex(prevIndex => (prevIndex - 1 + totalSlides) % totalSlides);
+  };
+
+  const handleNavClick = (index: number) => {
+    setSlideIndex(index);
+  };
+
+  const timerId = useRef(0);
+
+  useEffect(() => {
+    timerId.current = window.setInterval(() => {
+      handleNextSlide();
+    }, 5000);
+
+    return () => {
+      clearInterval(timerId.current);
+    };
+  }, []);
+
   return (
     <section className={styles.container}>
       <div className={styles.slider}>
-        <button className={styles.sliderButton}>
+        <button
+          className={styles.sliderButton}
+          onClick={handlePrevSlide}
+          type="button"
+        >
           <img
             src="/img/slider-btn-left.png"
             alt="arrow"
@@ -14,31 +46,57 @@ export const Slider: React.FC = () => {
         </button>
 
         <div className={styles.banner}>
-          <div className={styles.bannerLeft}>
-            <div className={styles.bannerLeftContent}>
-              <h2 className={styles.bannerLeftTitle}>
-                Now available <br /> in our store!{' '}
-              </h2>
-              <span className={styles.bannerLeftText}>Be the first!</span>
+          <div
+            className={styles.sliderTracker}
+            style={{ transform: `translateX(-${slideIndex * 100}%)` }}
+          >
+            <div className={styles.mainSlide}>
+              <div className={styles.mainSlideLeft}>
+                <div className={styles.mainSlideLeftContent}>
+                  <h2 className={styles.mainSlideLeftTitle}>
+                    Now available <br /> in our store!{' '}
+                  </h2>
+                  <span className={styles.mainSlideLeftText}>
+                    Be the first!
+                  </span>
+                </div>
+
+                <NavLink to={'/'} className={styles.mainSlideLeftButton}>
+                  ORDER NOW
+                </NavLink>
+              </div>
+
+              <div className={styles.mainSlideRight}>
+                <div className={styles.mainSlideRightContent}>
+                  <h2 className={styles.mainSlideRightTitle}>iPhone 14 Pro</h2>
+                  <p className={styles.mainSlideRightText}>Pro. Beyond.</p>
+                </div>
+                <img
+                  className={styles.mainSlideRightImage}
+                  src="/img/slider/main.png"
+                  alt="Slider Picture"
+                />
+              </div>
             </div>
 
-            <button className={styles.bannerLeftButton}>ORDER NOW</button>
-          </div>
-
-          <div className={styles.bannerRight}>
-            <div className={styles.bannerRightContent}>
-              <h2 className={styles.bannerRightTitle}>iPhone 14 Pro</h2>
-              <p className={styles.bannerRightText}>Pro.Beyond.</p>
-            </div>
             <img
-              className={styles.bannerRightImage}
-              src="/img/slider/main.png"
-              alt="Slider Picture"
+              src="/img/banner-phones.png"
+              alt="Slider Image"
+              className={styles.secondarySlide}
+            />
+            <img
+              src="/img/banner-tablets.png"
+              alt="Slider Image"
+              className={styles.secondarySlide}
             />
           </div>
         </div>
 
-        <button className={styles.sliderButton}>
+        <button
+          className={styles.sliderButton}
+          onClick={handleNextSlide}
+          type="button"
+        >
           <img
             src="/img/slider-btn-right.png"
             alt="arrow"
@@ -48,13 +106,13 @@ export const Slider: React.FC = () => {
       </div>
 
       <div className={styles.nav}>
-        {[1, 2, 3].map(i => (
-          <button className={styles.navButton} key={i}></button>
+        {[0, 1, 2].map(i => (
+          <button
+            key={i}
+            onClick={() => handleNavClick(i)}
+            className={`${styles.navButton} ${slideIndex === i ? styles.navButtonActive : ''}`}
+          />
         ))}
-        <button
-          className={`${styles.navButton} ${styles.navButtonActive}`}
-        ></button>
-        <button className={styles.navButton}></button>
       </div>
     </section>
   );

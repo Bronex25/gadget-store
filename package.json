@@ -9,7 +9,7 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "types:scss": "tsm src --ignorePaths node_modules,dist"
+    "types:scss": "typed-scss-modules src --ignorePaths node_modules,dist --watch"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.7.0",
@@ -36,7 +36,7 @@
     "globals": "^16.1.0",
     "husky": "^9.1.7",
     "prettier": "^3.5.3",
-    "sass": "^1.89.0",
+    "sass": "^1.89.1",
     "sass-embedded": "^1.87.0",
     "typed-scss-modules": "^8.1.1",
     "typescript": "~5.8.3",

@@ -14,8 +14,8 @@ export const Header: React.FC = () => {
     setIsMenuOpen(false);
   };
 
-  const getNavLinkClass = ({ isActive }: { isActive: boolean }) =>
-    cn(styles.navItem, { [styles.active]: isActive });
+  const getLinkClass = ({ isActive }: { isActive: boolean }) =>
+    cn(styles.link, styles.navItem, { [styles.active]: isActive });
 
   useEffect(() => {
     document.body.style.overflow = isMenuOpen ? 'hidden' : 'auto';
@@ -24,7 +24,7 @@ export const Header: React.FC = () => {
   return (
     <header className={styles.header}>
       <div className={styles.container}>
-        <Link href="#/">
+        <Link to="/">
           <img src="public/img/logo.png" alt="logo" className={styles.logo} />
         </Link>
         <div className={styles.burgerMenu} onClick={() => handleMenuOpen()}>
@@ -40,7 +40,7 @@ export const Header: React.FC = () => {
           {['home', 'phones', 'tablets', 'accessories'].map((item, index) => (
             <li key={index + 1}>
               <NavLink
-                className={getNavLinkClass}
+                className={getLinkClass}
                 to={`/${item !== 'home' ? item : ''}`}
                 onClick={handleClickLink}
               >
@@ -51,14 +51,14 @@ export const Header: React.FC = () => {
         </ul>
 
         <div className={styles.shopping} onClick={handleClickLink}>
-          <NavLink to="/cart" className={styles.link}>
+          <NavLink to="/cart" className={getLinkClass}>
             <img
               src="public/img/shopping-cart.png"
               alt="cart"
               className={styles.icon}
             />
           </NavLink>
-          <NavLink to="/favorites" className={cn(getNavLinkClass, styles.link)}>
+          <NavLink to="/favorites" className={getLinkClass}>
             <img
               src="public/img/favorites.png"
               alt="cart"

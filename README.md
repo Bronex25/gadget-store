@@ -1,9 +1,9 @@
-📱 Phone Store
+Gadget Store
 
-A modern and responsive Phone Store built with React and Redux Toolkit. Users can browse a list of phones, view detailed information, and manage their shopping cart—all with a smooth user experience and state management handled globally.
+A modern and responsive Gadget Store built with React and Redux Toolkit. Users can browse a list of phones, view detailed information, and manage their shopping cart—all with a smooth user experience and state management handled globally.
 
 ✨ Features
-	•	Browse a list of available phones
+	•	Browse a list of available gadgets
 	•	View phone details
 	•	Add and remove phones from the shopping cart
 	•	Global state management with Redux Toolkit

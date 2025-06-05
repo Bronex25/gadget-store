@@ -1,25 +1,29 @@
-@import '../../styles/variables.scss';
+@use '../../styles/variables.scss' as *;
+@use '../../styles/mixins.scss' as *;
+@use '../../styles/fonts.scss' as *;
 
 .container {
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   align-items: center;
-  grid-column: 1 / -1;
-  gap: 16px;
+  width: 100%;
+
+  @media screen and (min-width: $tablet-min-width) {
+    grid-column: 1 / -1;
+  }
 }
 
 .slider {
   display: flex;
   flex-direction: column;
   gap: 16px;
-  width: 100%;
-  height: auto;
+  margin-inline: -16px;
 
   @media (min-width: $tablet-min-width) {
     flex-direction: row;
     align-items: center;
-    justify-content: center;
-    height: 100%;
+    justify-content: space-between;
   }
 }
 
@@ -30,7 +34,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 32px;
+    width: 48px;
     height: 100%;
     border: 1px solid $color-elements;
     border-radius: 48px;
@@ -41,6 +45,10 @@
       border: 1px solid $color-secondary;
     }
   }
+
+  @media (min-width: $desktop-min-width) {
+    width: 32px;
+  }
 }
 
 .sliderButtonIcon {
@@ -48,98 +56,140 @@
   height: 16px;
 }
 
-
-.banner {
-  box-sizing: border-box;
+.sliderTracker {
   display: flex;
-  flex-direction: column;
-  gap: 16px;
-  width: 100%;
-  background-color: $color-primary;
-  border-radius: 8px;
+  height: 100%;
+  width: 300%;
+  transition: transform 0.3s ease-in-out;
+  height: auto;
 
   @media (min-width: $tablet-min-width) {
-    flex-direction: row;
-    justify-content: space-between;
-    height: fit-content;
-  }
-
-  @media (min-width: $desktop-min-width) {
-    height: 400px;
+    max-height: 400px;
   }
 }
 
-.bannerLeft {
+.banner {
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+
+  background-color: $color-primary;
+
+  @media (min-width: $tablet-min-width) {
+    border-radius: 8px;
+  }
+}
+
+.mainSlide {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: center;
+  padding: 32px 32px 0 32px;
   box-sizing: border-box;
-  padding: 24px;
+  flex-shrink: 0;
+
+  @media (min-width: $tablet-min-width) {
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 2% 2% 0 2%;
+    gap: 0;
+  }
+}
+
+.mainSlideLeft {
+  box-sizing: border-box;
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
 
   @media (min-width: $tablet-min-width) {
     border-radius: 24px;
     background-color: rgb(31, 35, 33);
-    width: 40%;
-    height: 90%;
-    margin: 1%;
-    padding: 5%;
+    width: 98%;
+    height: 98%;
+    padding: 3%;
   }
 }
 
-.bannerLeftContent {
+.mainSlideLeftContent {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  align-items: center;
   width: 100%;
+  height: 100%;
+
+  @media screen and (min-width: $tablet-min-width) {
+    align-items: flex-start;
+  }
 }
 
-.bannerLeftTitle {
-  font-family: $font-family;
-  font-weight: 800;
-  font-size: 32px;
-  line-height: 1.2;
-  background: linear-gradient(90deg, #6a5af9, #b65fcf);
+.mainSlideLeftTitle {
+  text-align: center;
+  font-size: 30px;
+  font-family: 'mont-bold';
+  background: linear-gradient(75.28deg, #891CE8 -22.43%, #7560FA 35.22%, #E963FF 100.1%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
 
   @media (min-width: $tablet-min-width) {
-    font-size: 42px;
+    text-align: left;
+  }
+
+  @media (min-width: $desktop-min-width) {
+    font-size: 40px
+  }
+
+}
+
+.mainSlideLeftText {
+  display: none;
+
+  @media (min-width: $tablet-min-width) {
+    display: block;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: $color-secondary;
   }
 }
 
-.bannerLeftText {
-  font-family: $font-family;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 24px;
-  color: $color-secondary;
+.mainSlideLeftButton {
+  display: none;
+
+  @media (min-width: $tablet-min-width) {
+    all: unset;
+    border-radius: 36px;
+    color: $color-white;
+    background-color: transparent;
+    font-size: 16px;
+    font-family: 'mont-semi-bold';
+    border: 0.5px solid $color-secondary;
+
+    height: 75px;
+    width: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }
 
-.bannerLeftButton {
-  padding: 1rem 2rem;
-  height: 42px;
-  width: fit-content;
-  border-radius: 36px;
-  color: $color-white;
-  background-color: transparent;
-  font-weight: 400;
-  font-size: 14px;
-  border: 0.5px solid $color-secondary;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.bannerRight {
+.mainSlideRight {
   box-sizing: border-box;
   width: 100%;
-  border-radius: 16px;
-  padding: 24px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -147,44 +197,56 @@
   gap: 16px;
 
   @media (min-width: $tablet-min-width) {
-    width: 60%;
     height: 100%;
-    padding: 32px 32px 0px 32px;
+    padding: 32px 32px 0 32px;
   }
 }
 
-.bannerRightImage {
-  width: 100%;
-  height: auto;
+.mainSlideRightImage {
+  box-sizing: border-box;
+  aspect-ratio: initial;
+  width: 80%;
   object-fit: contain;
   border-radius: 16px;
-  overflow: hidden;
+
+  @media screen and (min-width: $tablet-min-width) {
+    min-width: 150px;
+    max-width: 350px;
+  }
 }
 
-.bannerRightContent {
+.mainSlideRightContent {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
-  padding: 24px;
 }
 
-.bannerRightText {
+.mainSlideRightText {
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
   color: $color-secondary;
-  margin-top: 1rem;
 }
 
-.bannerRightTitle {
+.mainSlideRightTitle {
   color: $color-white;
-  font-weight: 600;
-  font-size: 24px;
+  font-family: 'Mont-SemiBold';
+  font-size: 32px;
+
 
   @media (min-width: $tablet-min-width) {
     font-size: 32px;
   }
+}
+
+.secondarySlide {
+  width: 100%;
+  object-fit: cover;
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .nav {
@@ -192,7 +254,8 @@
   height: fit-content;
   display: flex;
   gap: 8px;
-} 
+  margin-top: 16px;
+}
 
 .navButton {
   all: unset;
@@ -205,4 +268,3 @@
 .navButtonActive {
   background-color: $color-primary;
 }
-

@@ -1,4 +1,5 @@
 import { createRoot } from 'react-dom/client';
+import React from 'react';
 import './index.scss';
 
 import App from './App';
@@ -11,5 +12,5 @@ createRoot(document.getElementById('root') as HTMLDivElement).render(
     <Provider store={store}>
       <App />
     </Provider>
-  </HashRouter>
+  </HashRouter>,
 );
