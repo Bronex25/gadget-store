@@ -3,7 +3,7 @@ export declare const card: string;
 export declare const cardLink: string;
 export declare const controls: string;
 export declare const favoriteButton: string;
-export declare const favoriteButtonActive: string;
+export declare const favoriteButttonActive: string;
 export declare const image: string;
 export declare const oldPrice: string;
 export declare const price: string;

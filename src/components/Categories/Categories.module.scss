@@ -1,15 +1,19 @@
 @use "../../styles/mixins.scss" as *;
+@use "../../styles/fonts.scss" as *;
+@use "../../styles//variables.scss" as *;
 
-
-.categories {
-
-  &__title {
-    margin: 0;
-    grid-column: 1 / -1;
-  }
-
-  &__list {
-    @include responsive-grid(16px);
-    
-  }
+.sectionCategories {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    gap: 32px;
 }
+
+
+.categoriesTitle {
+  @include secondTitle();
+}
+.categoriesList {
+    @include responsive-grid(16px);
+  }

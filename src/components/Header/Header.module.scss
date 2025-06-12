@@ -19,7 +19,7 @@
 }
 
 .header {
-  grid-column: 1/ -1;
+  grid-column: 1 / -1;
   position: relative;
   display: flex;
   min-width: 100%;
@@ -121,7 +121,7 @@
 .navItem {
   position: relative;
   text-decoration: none;
-  font-weight: 700;
+  font-family: $font-bold;
   font-size: 12px;
   text-transform: uppercase;
   color: $color-secondary;

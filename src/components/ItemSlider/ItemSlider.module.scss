@@ -1,0 +1,78 @@
+@use "../../styles/mixins.scss" as *;
+@use "../../styles/variables.scss" as *;
+
+.itemSlider {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.itemsList {
+  width: 100%;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding-block: 16px;
+
+  @media (min-width: $tablet-min-width) {
+    overflow-x: hidden;
+  }
+}
+
+.slider {
+  display: flex;
+  gap: 8px;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: 16px;
+  overflow: visible;
+  @media (min-width: $tablet-min-width) {
+    scroll-snap-type: none;
+  }
+}
+
+.topWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.title {
+  font-family: $font-bold;
+  font-size: 22px;
+  line-height: 140%;
+  letter-spacing: 0%;
+
+  @media (min-width: $tablet-min-width) {
+    font-size: 32px;    
+  }
+}
+
+.controllers {
+  display: flex;
+  gap: 8px;
+}
+
+.buttonLeft {
+  @include buttonRounded();
+  background-image: url(img/Icons/arrow-left.svg);
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.buttonRight {
+  @include buttonRounded();
+  background-image: url(img/Icons/arrow-right.svg);
+
+    &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+
+

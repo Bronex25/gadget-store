@@ -21,14 +21,14 @@ export const Slider: React.FC = () => {
   const timerId = useRef(0);
 
   useEffect(() => {
-    timerId.current = window.setInterval(() => {
+    timerId.current = window.setTimeout(() => {
       handleNextSlide();
     }, 5000);
 
     return () => {
       clearInterval(timerId.current);
     };
-  }, []);
+  }, [slideIndex]);
 
   return (
     <section className={styles.container}>
@@ -80,7 +80,7 @@ export const Slider: React.FC = () => {
             </div>
 
             <img
-              src="/img/banner-phones.png"
+              src="/img/banner-accessories.png"
               alt="Slider Image"
               className={styles.secondarySlide}
             />

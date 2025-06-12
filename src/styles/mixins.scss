@@ -1,3 +1,6 @@
+@use "../styles/variables.scss" as *;
+
+
 @mixin responsive-grid($gap: 16px) {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -16,4 +19,31 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+@mixin buttonRounded {
+  height: $button-size;
+  width: $button-size;
+  border: 1px solid $color-elements;
+  background-color: transparent;
+  border-radius: 50%;
+
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    border-color: $color-secondary;
+  }
+}
+
+@mixin secondTitle {
+  font-family: $font-bold;
+  font-size: $font-size-second-title;
+  line-height: 140%;
+  letter-spacing: 0%;
+
+  @media (min-width: $tablet-min-width) {
+    font-size: 32px;
+  }
 }

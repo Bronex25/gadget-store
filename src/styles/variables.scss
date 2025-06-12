@@ -8,10 +8,23 @@ $color-background: #fafbfc;
 $color-white: #fff;
 $color-green: #27ae60;
 $color-red: #eb5757;
+$color-phones: rgba(109, 100, 116, 1);
+$color-assessories:rgba(213, 60, 81, 1);
+$color-tablets:rgba(141, 141, 146, 1);
 
 $tablet-min-width: 640px;
 $desktop-min-width: 1200px;
 
-$font-family: "Mont", sans-serif;
+$font-bold: 'Mont-Bold';
+$font-semiBold: 'Mont-SemiBold';
+$font-regular: 'Mont-Regular';
 
 $icon-size: 16px;
+$button-size: 32px;
+
+$padding-desktop: 32px;
+$padding-tablet: 24px;
+$padding-mobile: 16px;
+
+$font-size-second-title: 22px;
+$font-size-second-title-mb: 32px;

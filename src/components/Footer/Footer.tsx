@@ -1,29 +1,43 @@
+import { Link } from 'react-router-dom';
 import styles from './Footer.module.scss';
+import React from 'react';
 
 export const Footer: React.FC = () => {
+  const handleScrollTop = (e: React.MouseEvent) => {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
-    <footer className={styles['footer']}>
-        <div className={styles['footer__logo']}>
-          <img src="/img/logo.png" alt="logo" className={styles['footer__logo-image']} />
-        </div>
+    <footer className={styles.footer}>
+      <div className={styles.logo}>
+        <img src="/img/logo.png" alt="logo" className={styles.logoImage} />
+      </div>
 
-        <div className={styles['footer__links']}>
-          <a href="#" className={styles['footer__link']}>Github</a>
-          <a href="#" className={styles['footer__link']}>Contacts</a>
-          <a href="#" className={styles['footer__link']}>Rights</a>
-        </div>
+      <div className={styles.linksWrapper}>
+        <a href="https://github.com/Bronex25" className={styles.link}>
+          Github
+        </a>
+        <a
+          href="https://www.linkedin.com/in/oleksandr-plaksin-073262282/"
+          className={styles.link}
+        >
+          Contacts
+        </a>
+        <a href="https://github.com/Bronex25" className={styles.link}>
+          Rights
+        </a>
+      </div>
 
-        <div className={styles['footer__button-container']}>
-          <p className={styles['footer__button-name']}>Back to top</p>
+      <div className={styles.buttonContainer}>
+        <p className={styles.buttonText}>Back to top</p>
 
-          <button className={styles['footer__button']}>
-            <img 
-              src="/img/arrow-up.png" 
-              alt="up" 
-              className={styles['footer__button-image']} 
-            />
-          </button>
-        </div>
+        <Link
+          to={'#'}
+          className={styles.button}
+          onClick={handleScrollTop}
+        ></Link>
+      </div>
     </footer>
   );
-}
+};

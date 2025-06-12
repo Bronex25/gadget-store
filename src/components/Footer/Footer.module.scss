@@ -1,11 +1,85 @@
-  
-  .footer {
-    margin: 0 auto;
-    grid-column: 1 / -1;
-    margin-top: 2rem;
-    display: flex;
+@use '../../styles/mixins.scss' as *;
+@use '../../styles/variables.scss' as *;
+
+.footer {
+  grid-column: 1 / -1;
+  margin: 0 auto;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
+  max-width: 1200px;
+
+  box-shadow: 1px $color-elements;
+
+
+  @media (min-width: $tablet-min-width) {
     flex-direction: row;
-    justify-content: space-between;
-    width: 100%;
-    max-width: 1200px;
+    align-items: center;
+    height: 96px;
   }
+
+}
+
+.logo {
+  width: 100%;  
+}
+
+.logoImage {
+  object-fit: contain;
+  max-height: 32px;
+}
+
+.linksWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+
+  @media (min-width: $tablet-min-width) {
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  }
+}
+
+.link {
+  all: unset;
+  cursor: pointer;
+  color: $color-secondary;
+  font-size: 12px;
+}
+
+.buttonContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 16px;
+
+  @media (min-width: $tablet-min-width) {
+  justify-content: flex-end;
+  }
+}
+
+.buttonText {
+  font-size: 12px;
+  color: $color-secondary;
+}
+
+.button {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid $color-icons;
+
+  background-image: url('img/Icons/arrow-up.svg');
+  background-repeat: no-repeat;
+  background-position: center;  
+
+  &:hover {
+    border-color: $color-secondary;
+  }
+}

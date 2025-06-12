@@ -1,68 +1,61 @@
 @use '../../styles/variables.scss' as *;
 
 .card {
-  grid-column: span 4;
-
-  @media (min-width: $tablet-min-width) {
-    grid-column: span 6;
-  }
-
-  @media (min-width: 1200px) {
-    grid-column: span 6;
-  }
-
+  flex: 0 0 calc(50% - 8px); // 2 per row on mobile
+  max-width: 100%;
+  scroll-snap-align: start;
   box-sizing: border-box;
-  width: 100%;
-  max-width: 212px;
-  height: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-
-  transform: scale(1);
-  transition: all 0.3s ease-in-out;
-
-
-  gap: 8px;
-  padding: 32px;
-  border: 1px solid #ccc;
+  gap: 16px;
+  padding: 24px;
+  border: 1px solid $color-elements;
   border-radius: 8px;
   background-color: #fff;
-  text-decoration: none;
   color: $color-primary;
-
-  @media (min-width:$tablet-min-width) {
-    max-width: 272px;
-  }
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 
   &:hover {
-    box-shadow: 0px 3px 13px 0px rgba(23, 32, 49, 0.4);
-    transform: scale(1.05);
+    box-shadow: 0px 3px 13px rgba(23, 32, 49, 0.2);
+    transform: scale(1.02);
+  }
+
+  @media (min-width: $tablet-min-width) {
+    flex: 0 0 calc(33.333% - 8px); // 3 per row
+  }
+
+  @media (min-width: $desktop-min-width) {
+    flex: 0 0 calc(25% - 8px); // 4 per row
   }
 }
 
 .cardLink {
-  width: 100%;
-  box-sizing: border-box;
-  gap: 8px;
-
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  width: 100%;
+  box-sizing: border-box;
+  gap: 8px;
+
+
   text-decoration: none;
   color: $color-primary;
 }
 
 .image {
   width: 100%;
-  height: 148px;
+  height: auto;
+  aspect-ratio: 1 / 1;
   object-fit: contain;
   border-radius: 8px;
+  max-width: 220px;
 
   @media (min-width: $tablet-min-width) {
     height: 196px;
+    max-height: 196px;
   }
 }
 
@@ -190,8 +183,9 @@
   &:hover {
     border: 1px solid $color-primary;
   }
-  &--active {
-    background-image: url('/img/heart-icon-active.svg');
-  }
 }
 
+.favoriteButttonActive {
+  background-image: url('/img/heart-icon-active.svg');
+
+}
