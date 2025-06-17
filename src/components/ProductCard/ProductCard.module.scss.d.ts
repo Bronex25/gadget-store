@@ -9,7 +9,7 @@ export declare const oldPrice: string;
 export declare const price: string;
 export declare const priceContainer: string;
 export declare const specs: string;
-export declare const specsTitle: string;
 export declare const specsTitles: string;
+export declare const specsValue: string;
 export declare const specsValues: string;
 export declare const title: string;

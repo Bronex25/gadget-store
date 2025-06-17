@@ -1,71 +1,46 @@
+import styles from './Pagination.module.scss';
+import React from 'react';
 import cn from 'classnames';
-import styles from './Pagination.module.scss'
 
 type Props = {
-maxPages: number;
-currentPage: number;
-onPageChange: (newPage: number) => void;
-}
+  maxPages: number;
+  currentPage: number;
+  handleLink: (newPage: number) => void;
+};
 
 export const Pagination: React.FC<Props> = ({
   maxPages,
   currentPage,
-  onPageChange,
+  handleLink,
 }) => {
   return (
     <>
-      <ul className={styles['pagination']}>
-        <li className={styles['pagination__nav-item']}>
-          <a
-            className={styles['pagination__nav-link']}
-            href="#prev"
-            aria-disabled={currentPage === 1 ? 'true' : 'false'}
-            onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
-              e.preventDefault();
-              if (currentPage > 1) {
-                onPageChange(currentPage - 1);
-              }
-            }}
-          >
-            <img 
-              src="/img/slider-btn-left.png" 
-              alt="arrow" 
-              className={styles['pagination__icon']}
-            />
-          </a>
-        </li>
+      <ul className={styles.pagination}>
+        <li
+          className={cn(styles.button, styles.prev, {
+            [styles.disabled]: currentPage === 1,
+          })}
+          onClick={() => handleLink(currentPage - 1)}
+        ></li>
 
         {Array.from({ length: maxPages }).map((_, index) => (
           <li
-            className={styles['pagination__item']}
+            className={cn(styles.button, {
+              [styles.active]: currentPage === index + 1,
+            })}
             key={index}
-            onClick={() => onPageChange(index + 1)}
+            onClick={() => handleLink(index + 1)}
           >
-            <a className={styles['pagination__link']} href={`#${index + 1}`}>
-              {index + 1}
-            </a>
+            {index + 1}
           </li>
         ))}
 
-        <li className={styles['pagination__nav-item']}>
-          <a
-            className={styles['pagination__nav-link']}
-            href="#prev"
-            aria-disabled={currentPage === 1 ? 'true' : 'false'}
-            onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
-              e.preventDefault();
-              if (currentPage > 1) {
-                onPageChange(currentPage - 1);
-              }
-            }}
-          >
-            <img 
-              src="/img/slider-btn-right.png" 
-              alt="arrow" 
-              className={styles['pagination__icon']}
-            />
-          </a>
-        </li>
+        <li
+          className={cn(styles.button, styles.next, {
+            [styles.disabled]: currentPage === maxPages,
+          })}
+          onClick={() => handleLink(currentPage + 1)}
+        ></li>
       </ul>
     </>
   );

@@ -2,12 +2,14 @@
 
 .card {
   flex: 0 0 calc(50% - 8px); // 2 per row on mobile
-  max-width: 100%;
+  width: 100%;
+  max-height: fit-content;
   scroll-snap-align: start;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
   gap: 16px;
   padding: 24px;
   border: 1px solid $color-elements;
@@ -16,13 +18,12 @@
   color: $color-primary;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 
-  &:hover {
+  @media (min-width: $tablet-min-width) {
+    flex: 0 0 calc(33.333% - 8px);
+    &:hover {
     box-shadow: 0px 3px 13px rgba(23, 32, 49, 0.2);
     transform: scale(1.02);
-  }
-
-  @media (min-width: $tablet-min-width) {
-    flex: 0 0 calc(33.333% - 8px); // 3 per row
+  } // 3 per row
   }
 
   @media (min-width: $desktop-min-width) {
@@ -61,14 +62,12 @@
 
 .title {
   padding-top: 16px;
+  height: 28px;
   font-size: 14px;
-  font-weight: 500;
-  line-height: 21px;
   width: 100%;
 }
 
 .priceContainer {
-  margin: 0;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -79,9 +78,8 @@
 }
 
 .price {
-  margin: 0;
   font-size: 22px;
-  font-weight: 800;
+  font-family: $font-bold;
   line-height: 140%;
   color: $color-primary;
 }
@@ -116,21 +114,19 @@
   gap: 8px;
 }
 
-.specsTitle {
-  margin: 0;
-}
-
 .specsValues {
-  font-family: Mont-SemiBold, sans-serif;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin: 0;
+  align-items: flex-end;
   color: $color-primary;
-  font-size: 12px;
-  font-weight: 800;
-  line-height: 100%;
   gap: 8px;
+}
+
+.specsValue {
+  font-family: $font-semiBold;
+  font-size: 12px;
+  line-height: 100%;
 }
 
 .controls {

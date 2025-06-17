@@ -1,70 +1,135 @@
+/* eslint-disable react/display-name */
 import { Pagination } from '../../components/Pagination/Pagination';
+import React, { useCallback, useEffect, useMemo } from 'react';
+import styles from './ItemsPage.module.scss';
+import { Product } from '../../types/Product';
 import { ProductCard } from '../../components/ProductCard';
-import styles from './ItemsPage.module.scss'
+import { Breadcrumbs } from '../../components/Breadcrumbs';
+import { useSearchParams } from 'react-router-dom';
+import { updateSearchParams } from '../../utils/searchHelper';
 
 type Props = {
   pageName: string;
-  title: string;
-  totalModels: number;
-}
+  productToShow: Product[];
+};
 
-export const ItemsPage: React.FC<Props> = ({ pageName, title, totalModels }) => {
+export const ItemsPage: React.FC<Props> = React.memo((props: Props) => {
+  const { pageName, productToShow } = props;
+
+  const totalModelsNumber = productToShow.length;
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const sortBy = searchParams.get('sortBy') || 'newest';
+  const perPage = searchParams.get('perPage') || 'all';
+
+  const currentPage = Number(searchParams.get('page') || 1);
+  const maxPages = Math.ceil(totalModelsNumber / +perPage) || 1;
+
+  const handleSortChange = (event: React.ChangeEvent<HTMLSelectElement>) =>
+    setSearchParams(prev =>
+      updateSearchParams(prev, { sortBy: event.target.value, page: null }),
+    );
+
+  const handleItemsPerPageChange = (
+    event: React.ChangeEvent<HTMLSelectElement>,
+  ) =>
+    setSearchParams(prev =>
+      updateSearchParams(prev, { perPage: event.target.value, page: null }),
+    );
+
+  const handleChangePage = useCallback(
+    (targetPage: number) =>
+      setSearchParams(prev =>
+        updateSearchParams(prev, { page: targetPage.toString() }),
+      ),
+    [setSearchParams],
+  );
+
+  const sortedProducts = useMemo(() => {
+    return [...productToShow].sort((a: Product, b: Product) => {
+      switch (sortBy) {
+        case 'newest':
+          return b.year - a.year;
+        case 'cheapest':
+          return a.price - b.price;
+        case 'alphabeticaly':
+          return a.name.localeCompare(b.name);
+        default:
+          return 0;
+      }
+    });
+  }, [sortBy, productToShow]);
+
+  function handleSlice() {
+    const index = currentPage - 1;
+    const from = +perPage * index;
+    const to = +perPage * currentPage;
+
+    return sortedProducts.slice(from, to);
+  }
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [currentPage]);
+
+  const displayedItems = perPage === 'all' ? sortedProducts : handleSlice();
+
   return (
-    <div className={styles.mobilePage}>
-      <div className={styles['route']}>
-        <img
-          src="public/img/home-icon.png"
-          alt="home"
-          className={styles['route__icon']} />
-        <img
-          src="/img/arrow-grey-right.png"
-          alt="arrow"
-          className={styles['route__icon']} />
-        <span className={styles['route__text']}>{pageName}</span>
+    <div className={styles.itemsPage}>
+      <Breadcrumbs />
+
+      <div>
+        <h1 className={styles.title}>{pageName}</h1>
+        <p className={styles.models}>{`${totalModelsNumber} models`}</p>
       </div>
-    
-      <h1 className={styles['title']}>{title}</h1>
-      <span className={styles['models']}>{`${totalModels} models`}</span>
-      
-      {pageName !== 'Favorites' && (
-        <div className={styles['settings']}>
-        <div className={styles['settings__wrapper']}>
+
+      <div className={styles.settings}>
+        <div className={styles.settingsWrapper}>
           <label htmlFor="sortBy">Sort By</label>
 
-          <select 
-            name="sortBy" 
-            id="sortBy" 
-            className={styles['settings__select']}
+          <select
+            name="sortBy"
+            id="sortBy"
+            className={styles.settingsSelect}
+            onChange={handleSortChange}
+            value={sortBy}
           >
-            <option value="newest" defaultChecked>Newest</option>
-            <option value="cheapest" defaultChecked>Cheapest</option>
-            <option value="alphabeticaly" defaultChecked>Alphabeticaly</option>
-          </select>   
+            <option value="">Newest</option>
+            <option value="cheapest">Cheapest</option>
+            <option value="alphabeticaly">Alphabeticaly</option>
+          </select>
         </div>
-        
-        <div className={styles['settings__wrapper']}>
+
+        <div className={styles.settingsWrapper}>
           <label htmlFor="itemsOnPaage">Items on Page</label>
 
-          <select 
-            name="itemsOnPage" 
-            id="itemsOnPage" 
-            className={styles['settings__select']}
+          <select
+            name="itemsOnPage"
+            id="itemsOnPage"
+            className={styles.settingsSelect}
+            onChange={handleItemsPerPageChange}
+            value={perPage}
           >
-            <option value="all" defaultChecked>All</option>
-            <option value="32">32</option>
-            <option value="16">16</option>
+            <option value="">All</option>
             <option value="8">8</option>
-        </select>
+            <option value="16">16</option>
+            <option value="32">32</option>
+          </select>
         </div>
       </div>
-      )}
-      
-      
-      <div className={styles['item-list']}>
+      <div className={styles.productList}>
+        {displayedItems.map(product => (
+          <ProductCard product={product} key={product.id} />
+        ))}
       </div>
 
-      <Pagination maxPages={4} currentPage={5}  onPageChange={() => 4}/>
+      {perPage !== 'all' && (
+        <Pagination
+          maxPages={maxPages}
+          currentPage={currentPage}
+          handleLink={handleChangePage}
+        />
+      )}
     </div>
-
-  )
-}
+  );
+});

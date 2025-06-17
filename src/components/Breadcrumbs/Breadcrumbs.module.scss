@@ -1,0 +1,29 @@
+@use '../../styles/variables.scss' as *;
+
+.breadcrumbs {
+  margin-top: 24px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.link {
+  
+  color: $color-secondary;
+  text-decoration: none;
+  text-align: center;
+}
+
+.homeLink {
+  width: $icon-size;
+  height: $icon-size;
+  background-image: url('img/Icons/home.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.arrow {
+  width: $icon-size;
+  height: $icon-size;
+}

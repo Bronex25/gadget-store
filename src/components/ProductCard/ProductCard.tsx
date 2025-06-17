@@ -24,7 +24,7 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
 
   return (
     <article className={styles.card}>
-      <Link to={`/phones/${product.itemId}`} className={styles.cardLink}>
+      <Link to={`${product.itemId}`} className={styles.cardLink}>
         <img src={product.image} alt="Product" className={styles.image} />
 
         <span className={styles.title}>{product.name}</span>
@@ -42,15 +42,15 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
 
       <div className={styles.specs}>
         <div className={styles.specsTitles}>
-          <span className={styles.specsTitle}>Screen</span>
-          <span className={styles.specsTitle}>Capacity</span>
-          <span className={styles.specsTitle}>RAM</span>
+          <span>Screen</span>
+          <span>Capacity</span>
+          <span>RAM</span>
         </div>
 
         <div className={styles.specsValues}>
-          <span>{product.screen}</span>
-          <span>{product.capacity}</span>
-          <span>{product.ram}</span>
+          <span className={styles.specsValue}>{product.screen}</span>
+          <span className={styles.specsValue}>{product.capacity}</span>
+          <span className={styles.specsValue}>{product.ram}</span>
         </div>
       </div>
 

@@ -9,7 +9,7 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "types:scss": "typed-scss-modules src --ignorePaths node_modules,dist --watch"
+    "scss:watch": "typed-scss-modules src --ignorePaths node_modules,dist --watch"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.7.0",

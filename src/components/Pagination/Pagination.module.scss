@@ -1,7 +1,5 @@
 @use '../../styles/variables.scss' as *;
-
-
-$item-size: 40px;
+@use '../../styles/mixins.scss' as *;
 
 .pagination {
   margin: 0 auto;
@@ -11,43 +9,48 @@ $item-size: 40px;
   list-style: none;
   display: flex;
   gap: 8px;
+}
 
+.button {
+  display: flex;
+  @include buttonRounded();
+  @include center-content();
 
+  font-size: 14px;
+  text-decoration: none;
+  color: $color-primary;
+  cursor: pointer;
+}
 
+.prev {
+  @include buttonRounded();
+  background-image: url(img/Icons/arrow-left.svg);
 
-  &__link {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-decoration: none;
-    font-size: 14px;
-    color: $color-primary;
-    width: $item-size;
-    height: $item-size;
-    border: 1px solid $color-elements;
-    border-radius: 50%;
-
-    &:hover {
-      border-color: black;
-      transition: all ease-in-out 0.3s;
-    }
-
-    &--active {
-      @extend .pagination__link;
-      color: $color-background;
-      background-color: $color-primary;
-    }
-  }
-
-  &__nav-link {
-    @extend .pagination__link;
-    border-color: $color-secondary;
-    margin: 0 8px ;
-  }
-
-  &__icon {
-    width: $icon-size;
-    height: $icon-size;
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
   }
 }
+
+.next {
+  @include buttonRounded();
+  background-image: url(img/Icons/arrow-right.svg);
+
+    &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.active {
+  background-color: $color-primary;
+  color: $color-white;
+}
+
+
 

@@ -9,11 +9,26 @@ import { FavoritesPage } from './pages/FavoritesPage/FavoritesPage';
 import { useAppDispatch, useAppSelector } from './app/hooks';
 import { fetchProducts } from './features/productsSlice';
 import FullPageLoader from './components/Loader/FullPageLoader';
+import { Product } from './types/Product';
 
 export const App: React.FC = () => {
   const dispatch = useAppDispatch();
 
-  const { status } = useAppSelector(state => state.products);
+  const { status, products } = useAppSelector(state => state.products);
+
+  const phones: Product[] = [];
+  const tablets: Product[] = [];
+  const accessories: Product[] = [];
+  // Categorize products into phones, tablets, and accessories
+  products.forEach(product => {
+    if (product.category === 'phones') {
+      phones.push(product);
+    } else if (product.category === 'tablets') {
+      tablets.push(product);
+    } else if (product.category === 'accessories') {
+      accessories.push(product);
+    }
+  });
 
   useEffect(() => {
     dispatch(fetchProducts());
@@ -33,31 +48,17 @@ export const App: React.FC = () => {
             <Route
               path="phones"
               element={
-                <ItemsPage
-                  pageName="Mobile Phones"
-                  title="Phones"
-                  totalModels={24}
-                />
+                <ItemsPage pageName="Mobile Phones" productToShow={phones} />
               }
             ></Route>
             <Route
               path="tablets"
-              element={
-                <ItemsPage
-                  pageName="Tablets"
-                  title="Tablets"
-                  totalModels={103}
-                />
-              }
+              element={<ItemsPage pageName="Tablets" productToShow={tablets} />}
             ></Route>
             <Route
               path="accessories"
               element={
-                <ItemsPage
-                  pageName="Accessories"
-                  title="Accessories"
-                  totalModels={122}
-                />
+                <ItemsPage pageName="Accessories" productToShow={accessories} />
               }
             ></Route>
             <Route path="favorites" element={<FavoritesPage />}></Route>

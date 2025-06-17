@@ -19,7 +19,7 @@ export default defineConfig([
       globals: globals.browser,
     },
     rules: {
-      ...pluginPrettier.configs.recommended.rules, // enables prettier/prettier rule
+      ...pluginPrettier.configs.recommended.rules, // enables prettier/prettier rule,
     },
   },
 
