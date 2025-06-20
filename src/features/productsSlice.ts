@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Product } from '../types/Product';
-import { getItems } from '../utils/api';
+import { fetchFromSupabase } from '../utils/api';
 
 const initialState = {
   products: [] as Product[],
@@ -10,7 +10,7 @@ const initialState = {
 export const fetchProducts = createAsyncThunk(
   'products/fetchProducts',
   async () => {
-    const data: Product[] = await getItems('products');
+    const data: Product[] = await fetchFromSupabase('products');
 
     return data;
   },

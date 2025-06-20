@@ -10,6 +10,7 @@ import { useAppDispatch, useAppSelector } from './app/hooks';
 import { fetchProducts } from './features/productsSlice';
 import FullPageLoader from './components/Loader/FullPageLoader';
 import { Product } from './types/Product';
+import { ProductDetailsPage } from './pages/ProducDetailsPage/ProductDetailsPage';
 
 export const App: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -50,6 +51,10 @@ export const App: React.FC = () => {
               element={
                 <ItemsPage pageName="Mobile Phones" productToShow={phones} />
               }
+            ></Route>
+            <Route
+              path="phones/:productId"
+              element={<ProductDetailsPage />}
             ></Route>
             <Route
               path="tablets"

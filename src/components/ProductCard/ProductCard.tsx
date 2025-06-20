@@ -1,30 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { addToCard, toggleFavorites } from '../../features/productCardSlice';
 import { Product } from '../../types/Product';
 import styles from './ProductCard.module.scss';
-import cn from 'classnames';
+import { ActionButtons } from '../ActionButtons';
 
 type Props = {
   product: Product;
 };
 
 export const ProductCard: React.FC<Props> = ({ product }) => {
-  const favoriteItems = useAppSelector(
-    state => state.productCard.favoritesItems,
-  );
-  const containItem = favoriteItems.find(item => item.id === product.id);
-
-  const dispatch = useAppDispatch();
-
-  const addCard = (item: Product) => {
-    dispatch(addToCard(item));
-  };
-
   return (
     <article className={styles.card}>
-      <Link to={`${product.itemId}`} className={styles.cardLink}>
+      <Link
+        to={`${product.category}/${product.itemId}`}
+        className={styles.cardLink}
+      >
         <img src={product.image} alt="Product" className={styles.image} />
 
         <span className={styles.title}>{product.name}</span>
@@ -54,17 +44,7 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
         </div>
       </div>
 
-      <div className={styles.controls}>
-        <button className={styles.addButton} onClick={() => addCard(product)}>
-          Add to cart
-        </button>
-        <button
-          className={cn(styles.favoriteButton, {
-            [styles.favoriteButttonActive]: containItem,
-          })}
-          onClick={() => dispatch(toggleFavorites(product))}
-        ></button>
-      </div>
+      <ActionButtons productId={product.itemId} />
     </article>
   );
 };

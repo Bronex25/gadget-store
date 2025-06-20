@@ -1,9 +1,10 @@
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { Slider } from '../../components/Slider/Slider';
 import styles from './HomePage.module.scss';
 import { Categories } from '../../components/Categories';
 import { useAppSelector } from '../../app/hooks';
 import { ItemSlider } from '../../components/ItemSlider';
+import { fetchProductDetails } from '../../utils/api';
 
 export const HomePage = () => {
   const { products } = useAppSelector(state => state.products);
@@ -17,6 +18,12 @@ export const HomePage = () => {
       .sort((a, b) => b.fullPrice - b.price - (a.fullPrice - a.price))
       .slice(0, 15);
   }, [products]);
+
+  useEffect(() => {
+    fetchProductDetails('apple-iphone-11-128gb-black', 'phones').then(acces =>
+      console.log(acces),
+    );
+  }, []);
 
   return (
     <div className={styles.homePage}>

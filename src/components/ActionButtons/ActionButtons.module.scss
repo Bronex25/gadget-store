@@ -1,0 +1,54 @@
+@use '../../styles/variables.scss' as *;
+
+.actionButtons {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+}
+
+.addButton {
+  flex-grow: 1;
+  height: 40px;
+  color: $color-white;
+  background-color: $color-accent;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+
+  transition: all 0.3s ease;
+
+  &:hover {
+    box-shadow: 0px 3px 13px 0px rgba(23, 32, 49, 0.4);
+  }
+}
+
+.favoriteButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+
+  background-color: transparent;
+  background-image: url('img/Icons/favorites.svg');
+  background-repeat: no-repeat;
+  background-size: 16px;
+  background-position: center;
+
+  border-radius: 50%;
+  border: 1px solid $color-elements;
+
+  transition: all 0.3s ease;
+
+  &:hover {
+    border: 1px solid $color-secondary;
+  }
+
+  &Active {
+    background-image: url('/img/heart-icon-active.svg');
+  }
+}
+

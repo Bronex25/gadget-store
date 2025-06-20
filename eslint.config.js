@@ -52,4 +52,13 @@ export default defineConfig([
     language: 'markdown/commonmark',
     extends: ['markdown/recommended'],
   },
+  // React recommended (with override to disable react/prop-types)
+  {
+    ...pluginReact.configs.flat.recommended,
+    rules: {
+      ...pluginReact.configs.flat.recommended.rules,
+      'react/prop-types': 'off',
+      'react/display-name': 'off',
+    },
+  },
 ]);
