@@ -8,10 +8,15 @@
 }
 
 .link {
-  
   color: $color-secondary;
   text-decoration: none;
   text-align: center;
+
+  &:last-of-type {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 }
 
 .homeLink {

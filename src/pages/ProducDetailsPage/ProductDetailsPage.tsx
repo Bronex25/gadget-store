@@ -1,23 +1,33 @@
 import React, { useEffect, useState } from 'react';
 import styles from './ProductDetailsPage.module.scss';
+import cn from 'classnames';
 import { Breadcrumbs } from '../../components/Breadcrumbs';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { Category, fetchProductDetails } from '../../utils/api';
 import { ProductDetails } from '../../types/ProductInformation';
-import cn from 'classnames';
 import { ActionButtons } from '../../components/ActionButtons';
+import { Specs } from '../../components/Specs';
+import { ItemSlider } from '../../components/ItemSlider';
+import { colorMap } from '../../utils/colorsMap';
+import { BackButton } from '../../components/BackButton';
 
 export const ProductDetailsPage: React.FC = () => {
   const [product, setProduct] = useState<ProductDetails | null>(null);
   const [mainImage, setMainImage] = useState('');
-
-  console.log(product?.data?.name, product, product?.id, product?.data);
 
   const location = useLocation();
   const navigate = useNavigate();
 
   const { productId } = useParams<{ productId: string }>();
   const category = location.pathname.split('/')[1] as Category;
+
+  const handleClickOption = ({
+    color = product?.data.color,
+    capacity = product?.data.capacity,
+  }) => {
+    const newId = `${product?.data.namespaceId}-${capacity?.toLocaleLowerCase()}-${color?.replace(' ', '')}`;
+    navigate(`/${category}/${newId}`);
+  };
 
   useEffect(() => {
     if (!productId || !category) {
@@ -34,8 +44,6 @@ export const ProductDetailsPage: React.FC = () => {
       });
   }, [productId, category]);
 
-  const handleClickBack = () => navigate(-1);
-
   if (!product) {
     return <div>Loading...</div>;
   }
@@ -43,12 +51,9 @@ export const ProductDetailsPage: React.FC = () => {
   return (
     <main className={styles.main}>
       <Breadcrumbs></Breadcrumbs>
+      <BackButton />
 
-      <button className={styles.backButton} onClick={handleClickBack}>
-        Back
-      </button>
-
-      <h1 className={styles.pageTitle}>{product?.data?.name}</h1>
+      <h1 className={styles.pageTitle}>{product.data.name}</h1>
 
       <section className={styles.optionsAndImages}>
         <div className={styles.gallery}>
@@ -61,13 +66,9 @@ export const ProductDetailsPage: React.FC = () => {
           </div>
 
           <ul className={styles.galleryNav}>
-            {product?.data.images.map(image => (
+            {product.data.images.map(image => (
               <li key={image} className={styles.galleryItem}>
-                <button
-                  type="button"
-                  className={styles.galleryButton}
-                  onClick={() => setMainImage(image)}
-                >
+                <button type="button" onClick={() => setMainImage(image)}>
                   <img src={image} alt="Product thumbnail" />
                 </button>
               </li>
@@ -78,13 +79,20 @@ export const ProductDetailsPage: React.FC = () => {
         <div className={styles.options}>
           <div className={styles.colors}>
             <p className={styles.optionTitle}>Available colors</p>
+            <p className={styles.id}>{`ID: ${product.data.namespaceId}`}</p>
 
             <ul className={styles.colorList}>
-              {product?.data.colorsAvailable.map(color => (
-                <li key={color} className={styles.colorItem}>
+              {product.data.colorsAvailable.map(color => (
+                <li
+                  key={color}
+                  className={cn(styles.colorItem, {
+                    [styles.colorItemActive]: product.data.color === color,
+                  })}
+                >
                   <button
                     className={cn(styles.colorButton)}
-                    style={{ backgroundColor: color }}
+                    style={{ backgroundColor: colorMap[color] }}
+                    onClick={() => handleClickOption({ color })}
                   ></button>
                 </li>
               ))}
@@ -95,14 +103,15 @@ export const ProductDetailsPage: React.FC = () => {
             <p className={styles.optionTitle}>Select capacity</p>
 
             <ul className={styles.capacityList}>
-              {product?.data.capacityAvailable.map(capacity => (
-                <li key={capacity} className={styles.capacityItem}>
+              {product.data.capacityAvailable.map(capacity => (
+                <li key={capacity} className={styles.capacity}>
                   <button
                     className={cn(styles.capacityButton, {
                       [styles.capacityButtonActive]:
-                        capacity === product?.data.capacity,
+                        capacity === product.data.capacity,
                     })}
                     type="button"
+                    onClick={() => handleClickOption({ capacity })}
                   >
                     {capacity}
                   </button>
@@ -111,9 +120,60 @@ export const ProductDetailsPage: React.FC = () => {
             </ul>
           </div>
 
+          <div className={styles.priceContainer}>
+            <p className={styles.price}>
+              {product.data.priceDiscount
+                ? `$${product.data.priceDiscount}`
+                : `$${product.data.priceRegular}`}
+            </p>
+
+            {product.data.priceDiscount && (
+              <p
+                className={styles.oldPrice}
+              >{`$${product.data.priceRegular}`}</p>
+            )}
+          </div>
+
           <ActionButtons productId={product.id}></ActionButtons>
+          <Specs
+            specs={{
+              Screen: product.data.screen,
+              Resolution: product.data.resolution,
+              Processor: product.data.processor,
+              RAM: product.data.ram,
+            }}
+          />
         </div>
       </section>
+
+      <section className={styles.information}>
+        <section className={styles.sectionAbout}>
+          <h2 className={styles.secondTitle}>About</h2>
+          {product.data.description.map(description => (
+            <React.Fragment key={description.title}>
+              <h3 className={styles.title}>{description.title}</h3>
+              <p className={styles.text}>{description.text}</p>
+            </React.Fragment>
+          ))}
+        </section>
+
+        <section className={styles.sectionTechSpecs}>
+          <h2 className={styles.secondTitle}>Tech Specs</h2>
+          <Specs
+            specs={{
+              Screen: product.data.screen,
+              Resolution: product.data.resolution,
+              Processor: product.data.processor,
+              RAM: product.data.ram,
+              'Built-in memory': product.data.capacity,
+              Camera: product.data?.camera ? product.data.camera : '',
+              Cell: product.data.cell.join(', '),
+            }}
+          />
+        </section>
+      </section>
+
+      <ItemSlider productsToShow={[]} title="You may also like"></ItemSlider>
     </main>
   );
 };

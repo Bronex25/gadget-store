@@ -1,0 +1,24 @@
+@use '../../styles/mixins.scss' as *;
+@use '../../styles/variables.scss' as *;
+
+.shopCard {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+}
+
+.deleteButton {
+  all: unset;
+  cursor: pointer;
+  height: $icon-size;
+  width: $icon-size;
+  background-image: url(img/cross-for-burger.svg);
+  background-size: 16px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+}

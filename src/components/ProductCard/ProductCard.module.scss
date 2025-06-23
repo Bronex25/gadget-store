@@ -1,4 +1,5 @@
 @use '../../styles/variables.scss' as *;
+@use '../../styles/mixins.scss' as *;
 
 .card {
   flex: 0 0 calc(50% - 8px); // 2 per row on mobile
@@ -10,7 +11,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
+  gap: $gap-medium;
   padding: 24px;
   border: 1px solid $color-elements;
   border-radius: 8px;
@@ -32,15 +33,12 @@
 }
 
 .cardLink {
-  display: flex;
+  @include center-content();
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
 
   width: 100%;
   box-sizing: border-box;
-  gap: 8px;
-
+  gap: $gap-small;
 
   text-decoration: none;
   color: $color-primary;
@@ -71,7 +69,7 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  gap: 8px;
+  gap: $gap-small;
   width: 100%;
   border-bottom: 1px solid $color-elements;
   padding-bottom: 4px;
@@ -85,103 +83,10 @@
 }
 
 .oldPrice {
-  margin: 0;
   width: 100%;
   text-decoration: line-through;
   font-size: 22px;
   font-weight: 500;
   line-height: 140%;
   color: $color-secondary;
-}
-
-.specs {
-  margin: 0;
-  padding: 8px 0;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-}
-
-.specsTitles {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  margin: 0;
-  color: $color-secondary;
-  font-size: 12px;
-  font-weight: 600;
-  line-height: 100%;
-  gap: 8px;
-}
-
-.specsValues {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: flex-end;
-  color: $color-primary;
-  gap: 8px;
-}
-
-.specsValue {
-  font-family: $font-semiBold;
-  font-size: 12px;
-  line-height: 100%;
-}
-
-.controls {
-  margin: 0;
-  display: flex;
-  justify-content: space-between;
-  gap: 8px;
-  width: 100%;
-}
-
-.addButton {
-  margin: 0;
-  flex-grow: 1;
-  height: 40px;
-  color: $color-white;
-  background-color: $color-accent;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-
-  transition: all 0.3s ease;
-
-
-  &:hover {
-    box-shadow: 0px 3px 13px 0px rgba(23, 32, 49, 0.4);
-  }
-}
-
-.favoriteButton {
-  margin: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 40px;
-  height: 40px;
-  cursor: pointer;
-
-  background-color: transparent;
-  background-image: url('/img/favorites.png');
-  background-repeat: no-repeat;
-  background-size: 16px;
-  background-position: center;
-
-  border-radius: 50%;
-  border: 1px solid $color-secondary;
-
-  transition: all 0.3s ease;
-
-
-  &:hover {
-    border: 1px solid $color-primary;
-  }
-}
-
-.favoriteButttonActive {
-  background-image: url('/img/heart-icon-active.svg');
-
 }

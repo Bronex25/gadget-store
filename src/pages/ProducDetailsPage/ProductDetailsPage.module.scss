@@ -5,34 +5,32 @@
   display: flex;
   flex-direction: column;
   grid-column: 1 / -1;
-  gap: 16px;
-}
-
-.backButton {
-  all: unset;
-  width: 66px;
-  height: 16px;
-  text-align: center;
-
-  font-family: $font-semiBold;
-  color: $color-secondary;
-  font-size: 12px;
-  line-height: 16px;
-
-  background-image: url(img/Icons/arrow-left.svg);
-  background-position: left center;
-  background-repeat: no-repeat;
+  gap: $gap-large;
 }
 
 .pageTitle {
   @include secondTitle();
 }
 
+.secondTitle {
+  font-size: 20px;
+  font-family: $font-semiBold;
+  line-height: 140%;;
+
+  @include afterElemLine();
+
+  @media (min-width: $tablet-min-width) {
+    font-size: $font-size-second-title;
+    font-family: $font-bold;
+  }
+}
+
 .optionsAndImages {
   display: flex;
   flex-direction: column;
   width: 100%;
-  gap: 32px;
+  gap: $gap-extra-large;
+  position: relative;
 
   @media (min-width: $tablet-min-width) {
     flex-direction: row;
@@ -42,24 +40,26 @@
 .gallery {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  width: 100%;
+  gap: $gap-medium;
 
   @media (min-width: $tablet-min-width) {
     flex-direction: row-reverse;
-    align-items: baseline;
+    align-items: flex-start;
+    flex: 3;
+    max-width: 650px;
   }
 }
 
 .mainImageWrapper {
   width: 100%;
-  max-height: 288px;
   box-sizing: border-box;
   aspect-ratio: 1 / 1;
   @include center-content();
   overflow: hidden;
 
-  @media (min-width: $desktop-min-width) {
-    max-height: 464px;
+  @media (min-width: $tablet-min-width) {
+    max-height: 450px;
   }
 }
 
@@ -79,6 +79,15 @@
   @media (min-width: $tablet-min-width) {
     flex-direction: column;
   }
+}
+
+.id {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 12px;
+  font-family: $font-regular;
+  color: $color-secondary;
 }
 
 .galleryItem {
@@ -113,7 +122,12 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  gap: 16px;
+  flex: 2;
+  gap: $gap-extra-large;
+
+  @media screen and (min-width: $tablet-min-width) {
+  max-width: 320px;
+  }
 
   .optionTitle {
     font-size: 12px;
@@ -125,8 +139,13 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
-  border-bottom: 1px solid $color-elements;
   @include afterElemLine();
+  position: relative;
+
+
+  @media screen and (min-width: $tablet-min-width) {
+    position: unset;
+  }
 
   .colorList {
     list-style: none;
@@ -138,12 +157,12 @@
     @include center-content();
     border-radius: 50%;
     border: 1px solid $color-icons;
+    transition: border-color 0.3s ease-in-out;
 
-    &--active,
+    &Active,
     &:hover {
-        border-color: $color-primary;
-      }
-
+      border-color: $color-primary;
+    }
   }
 
   .colorButton {
@@ -197,4 +216,77 @@
     }
   }
 }
+
+.priceContainer {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: $gap-small;
+  width: 100%;
+  
+  .price {
+    font-size: 32px;
+    font-family: $font-bold;
+    color: $color-primary;
+  }
+
+  .oldPrice {
+    width: 100%;
+    text-decoration: line-through;
+    font-size: 22px;
+    color: $color-secondary;
+  }
+}
+
+.information {
+  display: flex;
+  flex-direction: column;
+  gap: $gap-extra-large;
+  width: 100%;
+
+  @media screen and (min-width: $desktop-min-width) {
+    flex-direction: row;
+  }
+}
+
+.sectionAbout {
+  display: flex;
+  flex-direction: column;
+  gap: $gap-medium;
+  width: 100%;
+  flex: 3;
+
+  @media screen and (min-width: $desktop-min-width) {
+    max-width: 650px;
+  }
+
+  .title {
+    font-size: 16px;
+    font-family: $font-semiBold;
+
+    @media (min-width: $tablet-min-width) {
+      font-size: 20px;
+    }
+  }
+  
+  .text {
+    font-family: $font-regular;
+    font-size: 14px;
+    line-height: 21px;
+    color: $color-secondary;
+    margin-bottom: 16px;
+  }
+}
+
+.sectionTechSpecs {
+  display: flex;
+  flex-direction: column;
+  flex: 2;
+  width: 100%;
+  gap: $gap-medium;
+}
+
+
+
+
 

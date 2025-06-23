@@ -1,0 +1,22 @@
+@use '../../styles/mixins.scss' as *;
+@use '../../styles/variables.scss' as *;
+
+.backButton {
+  all: unset;
+  cursor: pointer;
+  width: 66px;
+  min-width: 66px;
+  height: 16px;
+  text-align: center;
+
+  font-family: $font-semiBold;
+  color: $color-secondary;
+  font-size: 12px;
+  line-height: 16px;
+
+  background-image: url(img/Icons/arrow-left.svg);
+  background-position: left center;
+  background-repeat: no-repeat;
+
+  margin-top: 10px
+}

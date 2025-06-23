@@ -1,0 +1,26 @@
+@use '../../styles/mixins.scss' as *;
+@use '../../styles/variables.scss' as *;  
+
+
+.specs {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: $gap-small;
+}
+
+.item {
+  display: flex;
+  justify-content: space-between;
+}
+
+.label {
+  font-size: 12px;
+  color: $color-secondary;
+}
+
+.value {
+  font-size: 12px;
+  color: $color-primary;
+  font-family: $font-semiBold;
+}

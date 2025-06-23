@@ -11,6 +11,7 @@ import { fetchProducts } from './features/productsSlice';
 import FullPageLoader from './components/Loader/FullPageLoader';
 import { Product } from './types/Product';
 import { ProductDetailsPage } from './pages/ProducDetailsPage/ProductDetailsPage';
+import { ShoppingCartPage } from './pages/ShoppingCartPage/ShoppingCartPage';
 
 export const App: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -61,12 +62,21 @@ export const App: React.FC = () => {
               element={<ItemsPage pageName="Tablets" productToShow={tablets} />}
             ></Route>
             <Route
+              path="tablets/:productId"
+              element={<ProductDetailsPage />}
+            ></Route>
+            <Route
               path="accessories"
               element={
                 <ItemsPage pageName="Accessories" productToShow={accessories} />
               }
             ></Route>
+            <Route
+              path="accessories/:productId"
+              element={<ProductDetailsPage />}
+            ></Route>
             <Route path="favorites" element={<FavoritesPage />}></Route>
+            <Route path="cart" element={<ShoppingCartPage />}></Route>
             <Route
               path="*"
               element={<h1 className="title">Page not found</h1>}
