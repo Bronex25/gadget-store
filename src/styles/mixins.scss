@@ -58,3 +58,15 @@
     margin-top: 16px;
   }
 }
+
+@mixin pagePadding {
+  padding: $padding-mobile;
+
+  @media (min-width: $tablet-min-width) {
+    padding: $padding-tablet;
+  }
+
+  @media (min-width: $desktop-min-width) {
+    padding: $padding-desktop;
+  }
+}

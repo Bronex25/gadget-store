@@ -1,7 +1,10 @@
 import React from 'react';
 import { useAppSelector } from '../../app/hooks';
 import { ProductCard } from '../../components/ProductCard';
-import styles from '../ItemsPage/ItemsPage.module.scss';
+import styles from './FavoritesPage.module.scss';
+import typography from '../../styles/typography.module.scss';
+import { Breadcrumbs } from '../../components/Breadcrumbs';
+import cn from 'classnames';
 
 export const FavoritesPage: React.FC = () => {
   const favoriteProductIds = useAppSelector(
@@ -14,25 +17,15 @@ export const FavoritesPage: React.FC = () => {
   );
 
   return (
-    <div className={styles.mobilePage}>
-      <div className={styles['route']}>
-        <img
-          src="public/img/home-icon.png"
-          alt="home"
-          className={styles['route__icon']}
-        />
-        <img
-          src="/img/arrow-grey-right.png"
-          alt="arrow"
-          className={styles['route__icon']}
-        />
-        <span className={styles['route__text']}>Favorites</span>
-      </div>
+    <div className={styles.favoritesPage}>
+      <Breadcrumbs />
 
-      <h1 className={styles['title']}>Favorites</h1>
-      <span className={styles['models']}>{`${favoriteProductIds.length} models`}</span>
+      <h1 className={typography.heading1}>Favorites</h1>
+      <span
+        className={cn(typography.bodyText, styles.items)}
+      >{`${favoriteProductIds.length} models`}</span>
 
-      <div className={styles['item-list']}>
+      <div className={styles.itemList}>
         {favoriteProducts.map(item => (
           <ProductCard product={item} key={item.id} />
         ))}

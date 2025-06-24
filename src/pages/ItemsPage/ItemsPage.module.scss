@@ -4,43 +4,29 @@
   grid-column: 1 / -1;
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: $gap-extra-large;
   width: 100%;
-  max-width: 1200px;
-}
-
-.title {
-  font-family: $font-bold;
-  font-size: 32px;
-  line-height: 41px;
-
-  @media (min-width: $tablet-min-width) {
-    font-size: 48px;
-    line-height: 56px;
-  }
 }
 
 .models {
-  font-size: 14px;
-  line-height: 21px;
   color: $color-secondary;
 }
 
 .productList {
   display: flex;
   flex-direction: column;
-  row-gap: 32px;
+  row-gap: $gap-extra-large;
 
   @media (min-width: $tablet-min-width) {
     flex-direction: row;
     flex-wrap: wrap;
-    column-gap: 10px;
+    column-gap: $gap-small;
   }
 }
 
 .settings {
   display: flex;
-  gap: 16px;
+  gap: $gap-medium;
 }
 
 .settingsWrapper {
@@ -59,7 +45,7 @@
   -moz-appearance: none;
 
   padding: 8px 36px 8px 12px;
-  border: 1px solid #ccc;
+  border: $border-elements;
   border-radius: 10px;
   background-color: white;
   color: $color-primary;
@@ -76,8 +62,5 @@
 }
 
 label {
-  font-size: 14px;
-  line-height: 21px;
   color: $color-secondary;
-  padding-left: 3px;
 }

@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './ShopCard.module.scss';
 import typography from '../../styles/typography.module.scss';
+import cn from 'classnames';
 import { useAppDispatch } from '../../app/hooks';
 import {
   addToCard,
@@ -54,11 +55,11 @@ export const ShopCard: React.FC<Props> = ({
             disabled={quantity <= 1}
             onClick={handleDecrement}
           ></button>
-          <p className={typography.bodyText}>{quantity}</p>
+          <p className={cn(typography.bodyText, styles.quantity)}>{quantity}</p>
           <button className={styles.plus} onClick={handleIncrement}></button>
         </div>
 
-        <h2 className={typography.heading2}>{`$${price}`}</h2>
+        <h2 className={cn(typography.heading2, styles.price)}>{`$${price}`}</h2>
       </div>
     </div>
   );

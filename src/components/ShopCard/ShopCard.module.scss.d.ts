@@ -5,5 +5,7 @@ export declare const image: string;
 export declare const imageContainer: string;
 export declare const minus: string;
 export declare const plus: string;
+export declare const price: string;
+export declare const quantity: string;
 export declare const quantityContainer: string;
 export declare const shopCard: string;

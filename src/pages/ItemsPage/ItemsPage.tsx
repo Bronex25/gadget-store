@@ -1,7 +1,8 @@
-/* eslint-disable react/display-name */
 import { Pagination } from '../../components/Pagination/Pagination';
 import React, { useCallback, useEffect, useMemo } from 'react';
 import styles from './ItemsPage.module.scss';
+import typography from '../../styles/typography.module.scss';
+import cn from 'classnames';
 import { Product } from '../../types/Product';
 import { ProductCard } from '../../components/ProductCard';
 import { Breadcrumbs } from '../../components/Breadcrumbs';
@@ -79,13 +80,17 @@ export const ItemsPage: React.FC<Props> = React.memo((props: Props) => {
       <Breadcrumbs />
 
       <div>
-        <h1 className={styles.title}>{pageName}</h1>
-        <p className={styles.models}>{`${totalModelsNumber} models`}</p>
+        <h1 className={typography.heading1}>{pageName}</h1>
+        <p
+          className={cn(styles.models, typography.bodyText)}
+        >{`${totalModelsNumber} models`}</p>
       </div>
 
       <div className={styles.settings}>
         <div className={styles.settingsWrapper}>
-          <label htmlFor="sortBy">Sort By</label>
+          <label htmlFor="sortBy" className={typography.smallText}>
+            Sort By
+          </label>
 
           <select
             name="sortBy"
@@ -101,7 +106,9 @@ export const ItemsPage: React.FC<Props> = React.memo((props: Props) => {
         </div>
 
         <div className={styles.settingsWrapper}>
-          <label htmlFor="itemsOnPaage">Items on Page</label>
+          <label htmlFor="itemsOnPaage" className={typography.smallText}>
+            Items on Page
+          </label>
 
           <select
             name="itemsOnPage"
