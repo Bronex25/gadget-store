@@ -2,8 +2,14 @@
 @use '../../styles/variables.scss' as *;
 
 .shoppingCartPage {
-  padding-top: $padding-tablet;
   grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: $gap-extra-large;
+}
+
+.contentContainer {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -12,30 +18,51 @@
   @media screen and (min-width: $desktop-min-width) {
     flex-direction: row;
   }
-  @media screen and (min-width: $tablet-min-width) {
-    padding-top: $padding-desktop;
-  }
 }
 
 .cartList {
+  display: flex;
+  flex-direction: column;
   list-style: none;
   width: 100%;
   gap: $gap-large;
+  flex: 7;
+}
+
+.checkout {
+  display: flex;
+  flex-direction: column;
+  gap: $gap-large;
+  width: 100%;
+  height: fit-content;
+  flex: 3;
+  padding: 24px;
+  box-sizing: border-box;
+  border: $border-elements;
+  border-radius: 16px;
 }
 
 .priceContainer {
   @include center-content();
   flex-direction: column;
-  padding: 24px;
+  justify-content: space-between;
   width: 100%;
-  gap: $gap-medium;
-  border: 1px solid $color-elements;
-  border-radius: 16px;
+  gap: $gap-small;
+
+  &::after {
+    content: '';
+    width: 100%;
+    height: 1px;
+    background-color: $color-elements;
+    margin-top: 16px;
+  }
 }
 
 .button {
   flex-grow: 1;
-  height: 48px;
+  min-height: 48px;
+  max-height: 48px;
+  width: 100%;
   color: $color-white;
   background-color: $color-accent;
   border: none;

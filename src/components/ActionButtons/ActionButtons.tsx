@@ -18,7 +18,7 @@ export const ActionButtons: React.FC<Props> = React.memo(({ productId }) => {
   const dispatch = useAppDispatch();
 
   const addCard = () => {
-    dispatch(addToCard(productId));
+    dispatch(addToCard({ itemId: productId, quantity: 1 }));
   };
 
   const handleToggleFavorites = () => {

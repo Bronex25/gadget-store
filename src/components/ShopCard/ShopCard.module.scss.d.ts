@@ -1,3 +1,9 @@
-export declare const container: string;
+export declare const containerWithImage: string;
+export declare const containerWithPrice: string;
 export declare const deleteButton: string;
+export declare const image: string;
+export declare const imageContainer: string;
+export declare const minus: string;
+export declare const plus: string;
+export declare const quantityContainer: string;
 export declare const shopCard: string;

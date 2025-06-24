@@ -1,19 +1,25 @@
 @use './styles/mixins.scss' as *;
 @use './styles/variables.scss' as *;
 
+.layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
 .container {
   @include responsive-grid(16px);
   box-sizing: border-box;
   max-width: 1200px;
   margin: 0 auto;
-  padding-inline: $padding-mobile;
-  padding-bottom: $padding-mobile;
+  padding: $padding-mobile;
+  width: 100%;
+  flex: 1;
 
   @media (min-width: $tablet-min-width) {
-    padding-bottom: 0;
-    padding-inline: $padding-tablet;
+    padding: $padding-tablet;
   }
   @media (min-width: $desktop-min-width) {
-    padding-inline: $padding-desktop;
+    padding: $padding-desktop;
   }
 }

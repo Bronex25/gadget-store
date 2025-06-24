@@ -4,6 +4,7 @@
 .footer {
   grid-column: 1 / -1;
   margin: 0 auto;
+  padding-inline: $padding-mobile;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -14,11 +15,15 @@
 
   box-shadow: 1px $color-elements;
 
-
   @media (min-width: $tablet-min-width) {
     flex-direction: row;
     align-items: center;
     height: 96px;
+    padding-inline: $padding-tablet;
+  }
+  
+  @media (min-width: $desktop-min-width) {
+    padding-inline: $padding-desktop;
   }
 
 }

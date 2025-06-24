@@ -3,7 +3,12 @@ import { loadFromStorage } from '../utils/storageUtils';
 
 const initialFavorites: string[] = loadFromStorage<string>('favorites');
 
-const initialCard: string[] = loadFromStorage<string>('card');
+const initialCard: CardItem[] = loadFromStorage<CardItem>('card');
+
+export type CardItem = {
+  itemId: string;
+  quantity: number;
+};
 
 const initialState = {
   favoritesItems: initialFavorites,
@@ -30,18 +35,37 @@ const productSlice = createSlice({
       localStorage.setItem('favorites', JSON.stringify(state.favoritesItems));
     },
 
-    addToCard: (state, action: PayloadAction<string>) => {
-      state.cardItems.push(action.payload);
+    addToCard: (state, action: PayloadAction<CardItem>) => {
+      const itemInCard = state.cardItems.find(
+        item => item.itemId === action.payload.itemId,
+      );
+      if (itemInCard) {
+        itemInCard.quantity += action.payload.quantity;
+      } else {
+        state.cardItems.push(action.payload);
+      }
       localStorage.setItem('card', JSON.stringify(state.cardItems));
     },
 
-    deleteFromCard: (state, action: PayloadAction<string>) => {
-      state.cardItems = state.cardItems.filter(item => item !== action.payload);
+    deleteFromCart: (state, action: PayloadAction<string>) => {
+      state.cardItems = state.cardItems.filter(
+        item => item.itemId !== action.payload,
+      );
+      localStorage.setItem('card', JSON.stringify(state.cardItems));
+    },
+
+    reduceQuantity: (state, action: PayloadAction<string>) => {
+      const itemInCard = state.cardItems.find(
+        item => item.itemId === action.payload,
+      );
+      if (itemInCard && itemInCard.quantity > 1) {
+        itemInCard.quantity -= 1;
+      }
       localStorage.setItem('card', JSON.stringify(state.cardItems));
     },
   },
 });
 
-export const { toggleFavorites, addToCard, deleteFromCard } =
+export const { toggleFavorites, addToCard, deleteFromCart, reduceQuantity } =
   productSlice.actions;
 export default productSlice.reducer;

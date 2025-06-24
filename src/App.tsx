@@ -37,10 +37,10 @@ export const App: React.FC = () => {
   }, []);
 
   return (
-    <>
+    <div className="layout">
       <Header></Header>
 
-      <div className="container">
+      <main className="container">
         {status === 'loading' ? (
           <FullPageLoader />
         ) : (
@@ -83,10 +83,9 @@ export const App: React.FC = () => {
             />
           </Routes>
         )}
-
-        <Footer />
-      </div>
-    </>
+      </main>
+      <Footer />
+    </div>
   );
 };
 
