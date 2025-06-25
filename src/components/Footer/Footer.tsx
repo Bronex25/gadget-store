@@ -11,7 +11,7 @@ export const Footer: React.FC = () => {
   return (
     <footer className={styles.footer}>
       <div className={styles.logo}>
-        <img src="/img/logo.png" alt="logo" className={styles.logoImage} />
+        <img src="./img/logo.svg" alt="logo" className={styles.logoImage} />
       </div>
 
       <div className={styles.linksWrapper}>

@@ -33,7 +33,7 @@
   cursor: pointer;
 
   background-color: transparent;
-  background-image: url('img/Icons/favorites.svg');
+  background-image: url('./img/icons/favorites.svg');
   background-repeat: no-repeat;
   background-position: center;
 
@@ -47,7 +47,7 @@
   }
 
   &Active {
-    background-image: url('/img/heart-icon-active.svg');
+    background-image: url('./img/heart-icon-active.svg');
   }
 }
 

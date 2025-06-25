@@ -25,13 +25,13 @@ export const Header: React.FC = () => {
     <header className={styles.header}>
       <div className={styles.container}>
         <Link to="/">
-          <img src="public/img/logo.png" alt="logo" className={styles.logo} />
+          <img src="./img/logo.svg" alt="logo" className={styles.logo} />
         </Link>
         <div className={styles.burgerMenu} onClick={() => handleMenuOpen()}>
           {!isMenuOpen ? (
-            <img src="public/img/burgerMenu.svg" alt="Burger Menu" />
+            <img src="./img/burgerMenu.svg" alt="Burger Menu" />
           ) : (
-            <img src="public/img/cross-for-burger.svg" alt="Close sign" />
+            <img src="./img/cross-for-burger.svg" alt="Close sign" />
           )}
         </div>
       </div>
@@ -53,17 +53,13 @@ export const Header: React.FC = () => {
         <div className={styles.shopping} onClick={handleClickLink}>
           <NavLink to="/cart" className={getLinkClass}>
             <img
-              src="public/img/shopping-cart.png"
+              src="./img/shopping-cart.png"
               alt="cart"
               className={styles.icon}
             />
           </NavLink>
           <NavLink to="/favorites" className={getLinkClass}>
-            <img
-              src="public/img/favorites.png"
-              alt="cart"
-              className={styles.icon}
-            />
+            <img src="./img/favorites.png" alt="cart" className={styles.icon} />
           </NavLink>
         </div>
       </div>

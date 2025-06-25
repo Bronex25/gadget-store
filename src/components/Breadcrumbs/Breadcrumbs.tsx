@@ -15,7 +15,7 @@ export const Breadcrumbs: React.FC = () => {
         return (
           <React.Fragment key={part}>
             <img
-              src="img/Icons/arrow-right.svg"
+              src="./img/icons/arrow-right.svg"
               alt="arrow"
               className={styles.arrow}
             />

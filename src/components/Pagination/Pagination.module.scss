@@ -24,7 +24,7 @@
 
 .prev {
   @include buttonRounded();
-  background-image: url(img/Icons/arrow-left.svg);
+  background-image: url('./img/icons/arrow-left.svg');
 
   &:disabled {
     opacity: 0.5;
@@ -34,7 +34,7 @@
 
 .next {
   @include buttonRounded();
-  background-image: url(img/Icons/arrow-right.svg);
+  background-image: url('./img/icons/arrow-right.svg');
 
     &:disabled {
     opacity: 0.5;

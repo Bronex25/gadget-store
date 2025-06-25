@@ -61,9 +61,10 @@
 }
 
 .burgerMenu {
-  @include item-size();
-  @include center-content();
   border-left: 1px solid $color-elements;
+
+  @include center-content();
+  @include item-size();
 
   @media (min-width: $tablet-min-width) {
     display: none;;
@@ -106,7 +107,6 @@
   align-items: center;
   list-style: none;
 
-  
   @media (min-width: $tablet-min-width) {
     display: flex;
     gap: 32px;
@@ -115,7 +115,6 @@
   @media (min-width: $desktop-min-width) {
     gap: 64px;
   }
-
 }
 
 .navItem {

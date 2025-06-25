@@ -6,7 +6,7 @@ export const FullPageLoader: React.FC = () => {
     <div className={styles.loaderOverlay}>
       <div className={styles.loader}>
         <img
-          src="/img/logo.png"
+          src="./img/logo.svg"
           alt="Gadget Store Logo"
           className={styles.logo}
         />

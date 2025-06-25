@@ -39,7 +39,7 @@ export const Slider: React.FC = () => {
           type="button"
         >
           <img
-            src="/img/slider-btn-left.png"
+            src="./img/slider-btn-left.png"
             alt="arrow"
             className={styles.sliderButtonIcon}
           />
@@ -73,19 +73,19 @@ export const Slider: React.FC = () => {
                 </div>
                 <img
                   className={styles.mainSlideRightImage}
-                  src="/img/slider/main.png"
+                  src="./img/slider/main.png"
                   alt="Slider Picture"
                 />
               </div>
             </div>
 
             <img
-              src="/img/banner-accessories.png"
+              src="./img/banner-accessories.png"
               alt="Slider Image"
               className={styles.secondarySlide}
             />
             <img
-              src="/img/banner-tablets.png"
+              src="./img/banner-tablets.png"
               alt="Slider Image"
               className={styles.secondarySlide}
             />
@@ -98,7 +98,7 @@ export const Slider: React.FC = () => {
           type="button"
         >
           <img
-            src="/img/slider-btn-right.png"
+            src="./img/slider-btn-right.png"
             alt="arrow"
             className={styles.sliderButtonIcon}
           />

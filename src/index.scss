@@ -1,6 +1,6 @@
-@import './styles/fonts.scss';
-@import './styles/mixins.scss';
-@import './styles/variables.scss';
+@use './styles/fonts.scss';
+@use './styles/mixins.scss';
+@use './styles/variables.scss';
 
 * {
   margin: 0;

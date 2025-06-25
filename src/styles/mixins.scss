@@ -1,6 +1,5 @@
 @use "../styles/variables.scss" as *;
 
-
 @mixin responsive-grid($gap: 16px) {
   display: grid;
   grid-template-columns: repeat(4, 1fr);

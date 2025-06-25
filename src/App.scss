@@ -8,13 +8,14 @@
 }
 
 .container {
-  @include responsive-grid(16px);
   box-sizing: border-box;
   max-width: 1200px;
   margin: 0 auto;
   padding: $padding-mobile;
   width: 100%;
   flex: 1;
+  
+  @include responsive-grid(16px);
 
   @media (min-width: $tablet-min-width) {
     padding: $padding-tablet;
