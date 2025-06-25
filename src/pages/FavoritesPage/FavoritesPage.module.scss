@@ -2,20 +2,20 @@
 @use '../../styles/variables.scss' as *;
 
 .favoritesPage {
-  grid-column: 1 / -1;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: $gap-extra-large;
+  width: 100%;;
+  @include pageStyle($gap-extra-large);
 }
 
 .itemList {
   display: flex;
-  list-style: none;
-  width: 100%;
-  column-gap: $gap-small;
-  row-gap: $gap-medium;
-  flex-wrap: wrap;
+  flex-direction: column;
+  row-gap: $gap-extra-large;
+
+  @media (min-width: $tablet-min-width) {
+    flex-direction: row;
+    flex-wrap: wrap;
+    column-gap: $gap-small;
+  }
 }
 
 .items {

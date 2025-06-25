@@ -20,10 +20,12 @@ export const FavoritesPage: React.FC = () => {
     <div className={styles.favoritesPage}>
       <Breadcrumbs />
 
-      <h1 className={typography.heading1}>Favorites</h1>
-      <span
-        className={cn(typography.bodyText, styles.items)}
-      >{`${favoriteProductIds.length} models`}</span>
+      <div>
+        <h1 className={typography.heading1}>Favorites</h1>
+        <span
+          className={cn(typography.bodyText, styles.items)}
+        >{`${favoriteProductIds.length} models`}</span>
+      </div>
 
       <div className={styles.itemList}>
         {favoriteProducts.map(item => (

@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Product } from '../../types/Product';
 import styles from './ProductCard.module.scss';
+import cn from 'classnames';
+import typography from '../../styles/typography.module.scss';
 import { ActionButtons } from '../ActionButtons';
 import { Specs } from '../Specs';
 
@@ -13,7 +15,6 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
   return (
     <article className={styles.card}>
       <Link
-        index
         to={`/${product.category}/${product.itemId}`}
         className={styles.cardLink}
       >
@@ -23,12 +24,14 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
       </Link>
 
       <div className={styles.priceContainer}>
-        <h3 className={styles.price}>
+        <h3 className={typography.heading3}>
           {product.price ? `$${product.price}` : `$${product.fullPrice}`}
         </h3>
 
         {product.price && (
-          <h3 className={styles.oldPrice}>{`$${product.fullPrice}`}</h3>
+          <h3
+            className={cn(styles.oldPrice, typography.heading3)}
+          >{`$${product.fullPrice}`}</h3>
         )}
       </div>
 

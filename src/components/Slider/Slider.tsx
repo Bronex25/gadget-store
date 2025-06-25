@@ -10,6 +10,7 @@ export const Slider: React.FC = () => {
   const handleNextSlide = () => {
     setSlideIndex(prevIndex => (prevIndex + 1) % totalSlides);
   };
+
   const handlePrevSlide = () => {
     setSlideIndex(prevIndex => (prevIndex - 1 + totalSlides) % totalSlides);
   };
@@ -61,7 +62,10 @@ export const Slider: React.FC = () => {
                   </span>
                 </div>
 
-                <NavLink to={'/'} className={styles.mainSlideLeftButton}>
+                <NavLink
+                  to={'/phones/apple-iphone-14-pro-128gb-spaceblack'}
+                  className={styles.mainSlideLeftButton}
+                >
                   ORDER NOW
                 </NavLink>
               </div>

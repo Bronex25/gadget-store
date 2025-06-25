@@ -1,4 +1,5 @@
 @use '../../styles/variables.scss' as *;
+@use '../../styles/mixins.scss' as *;
 
 .breadcrumbs {
   display: flex;
@@ -7,21 +8,26 @@
 }
 
 .link {
-  color: $color-secondary;
   text-decoration: none;
-  text-align: center;
+  color: $color-primary;
+  height: 100%;
+  line-height: 100%;
+  cursor: pointer;
+  @include center-content;
 
   &:last-of-type {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    font-weight: 600;
+    color: $color-secondary;
   }
 }
 
 .homeLink {
   width: $icon-size;
   height: $icon-size;
-  background-image: url('./img/icons/home.svg');
+  background-image: url('/img/icons/home.svg');
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;

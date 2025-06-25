@@ -1,26 +1,11 @@
 @use '../../styles/variables.scss' as *;
 @use '../../styles/mixins.scss' as *;
 
-@mixin gap-header {
-  gap: 16px;
-  @media (min-width: $tablet-min-width) {
-    gap: 24px;
-  }
-}
-
-@mixin item-size {
-    width: 48px;
-    height: 48px;
-
-  @media (min-width: $desktop-min-width) {
-    height: 64px;
-    width: 64px;
-  }
-}
-
 .header {
-  grid-column: 1 / -1;
-  position: relative;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: $color-white;
   display: flex;
   min-width: 100%;
   height: fit-content;
@@ -45,7 +30,8 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  border: 1px solid $color-elements;
+  border: $border-elements;
+  height: 100%;;
 
   @media (min-width: $tablet-min-width) {
     width: fit-content;
@@ -54,14 +40,14 @@
 }
 
 .logo {
-  margin: 0 20px;
-  height: 32px;
+  padding-inline: $padding-tablet;
+  height: 100%;
   object-fit: contain;
   object-position: center;
 }
 
 .burgerMenu {
-  border-left: 1px solid $color-elements;
+  border-left: $border-elements;
 
   @include center-content();
   @include item-size();
@@ -102,15 +88,17 @@
 
 .navBar {
   display: flex;
-  gap: 16px; 
+  gap: $gap-medium; 
+  padding-top: $padding-desktop;
   flex-direction: column;
   align-items: center;
   list-style: none;
 
   @media (min-width: $tablet-min-width) {
     display: flex;
-    gap: 32px;
+    gap: $gap-extra-large;
     flex-direction: row;
+    padding-top: 0;
   }
   @media (min-width: $desktop-min-width) {
     gap: 64px;
@@ -133,38 +121,7 @@
   }
 
   @media (min-width: $tablet-min-width) {
-    &::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      height: 3px;
-      width: 0;
-      background-color: $color-primary;
-      transition: width 0.3s ease;
-    }
-
-    &:hover {
-      color: $color-primary;
-
-      &::after {
-        width: 100%;
-      }
-    }
-  }
-
-  &.active {
-    color: $color-primary;
-
-    &::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      height: 3px;
-      width: 100%;
-      background-color: $color-primary;
-    }
+    @include animated-underline($color-primary);
   }
 }
 
@@ -187,48 +144,33 @@
     justify-content: center;
     width: 100%;
     height: 64px;
-    border: 1px solid $color-elements;
+    border: $border-elements;
 
     @media (min-width: $tablet-min-width) {
       @include item-size();
-
-      &::after {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        height: 3px;
-        width: 0;
-        background-color: $color-primary;
-        transition: width 0.3s ease;
-      }
-
-      &.active {
-        color: $color-primary;
-
-        &::after {
-          content: '';
-          position: absolute;
-          bottom: 0;
-          left: 0;
-          height: 3px;
-          width: 100%;
-          background-color: $color-primary;
-        }
-      }
-
-      &:hover {
-        color: $color-primary;
-        
-        &::after {
-          width: 100%;
-        }
-      }
+      @include animated-underline($color-primary);
     }
   }
 
   .icon {
-    width: 16px;
-    height: 16px;
+    width: $icon-size;
+    height: $icon-size;
   }
+}
+
+.counter {
+  position: absolute;
+  bottom: 50%;
+  left: 50%;
+  box-sizing: border-box;
+  width: 14px;
+  height: 14px;
+  text-align: center;
+  line-height: 12px;
+  font-size: 9px;
+
+  background-color: $color-secondary-accent;
+  color: $color-white;
+  border: 1px solid $color-white;
+  border-radius: 50%;
 }

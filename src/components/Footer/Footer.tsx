@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import styles from './Footer.module.scss';
 import React from 'react';
 
@@ -32,11 +31,7 @@ export const Footer: React.FC = () => {
       <div className={styles.buttonContainer}>
         <p className={styles.buttonText}>Back to top</p>
 
-        <Link
-          to={'#'}
-          className={styles.button}
-          onClick={handleScrollTop}
-        ></Link>
+        <button className={styles.button} onClick={handleScrollTop}></button>
       </div>
     </footer>
   );

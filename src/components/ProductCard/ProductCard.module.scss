@@ -2,7 +2,7 @@
 @use '../../styles/mixins.scss' as *;
 
 .card {
-  flex: 0 0 calc(50% - 8px); // 2 per row on mobile
+  flex: 0 0 calc(50% - 8px);
   width: 100%;
   max-height: fit-content;
   scroll-snap-align: start;
@@ -28,7 +28,7 @@
   }
 
   @media (min-width: $desktop-min-width) {
-    flex: 0 0 calc(25% - 8px); // 4 per row
+    flex: 0 0 calc(25% - 8px); 
   }
 }
 
@@ -71,22 +71,12 @@
   align-items: center;
   gap: $gap-small;
   width: 100%;
-  border-bottom: 1px solid $color-elements;
+  border-bottom: $border-elements;
   padding-bottom: 4px;
 }
 
-.price {
-  font-size: 22px;
-  font-family: $font-bold;
-  line-height: 140%;
-  color: $color-primary;
-}
-
 .oldPrice {
-  width: 100%;
   text-decoration: line-through;
-  font-size: 22px;
   font-weight: 500;
-  line-height: 140%;
   color: $color-secondary;
 }

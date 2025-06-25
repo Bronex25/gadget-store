@@ -1,5 +1,7 @@
 import React from 'react';
 import styles from './Breadcrumbs.module.scss';
+import typography from '../../styles/typography.module.scss';
+import cn from 'classnames';
 import { Link, useLocation } from 'react-router-dom';
 
 export const Breadcrumbs: React.FC = () => {
@@ -12,6 +14,7 @@ export const Breadcrumbs: React.FC = () => {
       {pathParts.map((part, index) => {
         const path = '/' + pathParts.slice(0, index + 1).join('/');
         const name = decodeURIComponent(part).replace(/-/g, ' ');
+
         return (
           <React.Fragment key={part}>
             <img
@@ -19,7 +22,7 @@ export const Breadcrumbs: React.FC = () => {
               alt="arrow"
               className={styles.arrow}
             />
-            <Link to={path} className={styles.link}>
+            <Link to={path} className={cn(styles.link, typography.smallText)}>
               {name.charAt(0).toUpperCase() + name.slice(1)}
             </Link>
           </React.Fragment>

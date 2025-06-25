@@ -43,7 +43,7 @@
   cursor: pointer;
   height: $icon-size;
   min-width: $icon-size;
-  background-image: url('./img/cross-for-burger.svg');
+  background-image: url('/img/cross-for-burger.svg');
   background-position: center;
   background-repeat: no-repeat;
   opacity: 25%;
@@ -80,11 +80,11 @@ button {
 }
 
 .minus {
-  background-image: url('./img/icons/minus.svg');
+  background-image: url('/img/icons/minus.svg');
 }
 
 .plus {
-  background-image: url('./img/icons/plus.svg');
+  background-image: url('/img/icons/plus.svg');
 }
 
 .quantity {

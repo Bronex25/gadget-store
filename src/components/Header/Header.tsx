@@ -2,9 +2,14 @@ import styles from './Header.module.scss';
 import cn from 'classnames';
 import { Link, NavLink } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
+import { useAppSelector } from '../../app/hooks';
 
 export const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const { favoritesItems, cardItems } = useAppSelector(
+    state => state.productCard,
+  );
 
   const handleMenuOpen = () => {
     setIsMenuOpen(prev => !prev);
@@ -52,14 +57,20 @@ export const Header: React.FC = () => {
 
         <div className={styles.shopping} onClick={handleClickLink}>
           <NavLink to="/cart" className={getLinkClass}>
+            <p className={styles.counter}>{cardItems.length}</p>
             <img
-              src="./img/shopping-cart.png"
+              src="./img/icons/cart.svg"
               alt="cart"
               className={styles.icon}
             />
           </NavLink>
           <NavLink to="/favorites" className={getLinkClass}>
-            <img src="./img/favorites.png" alt="cart" className={styles.icon} />
+            <p className={styles.counter}>{favoritesItems.length}</p>
+            <img
+              src="./img/icons/favorites.svg"
+              alt="cart"
+              className={styles.icon}
+            />
           </NavLink>
         </div>
       </div>

@@ -2,28 +2,13 @@
 @use "../../styles/variables.scss" as *;
 
 .homePage {
-  display: flex;
-  flex-direction: column;
-  gap: 48px;
+  padding-top: $padding-desktop;
 
-  max-width: 1200px;
-  grid-column: 1 / -1;
-  padding-top: 32px;
-
+  @include pageStyle;
   @media (min-width:$tablet-min-width) {
-    gap: 64px;
+    gap: $homepage-gap-tb;
   }
-}
-
-.homePageTitle {
-  width: 100%;
-  font-family: $font-bold;
-  font-size: 32px;
-  line-height: 41px;
-  letter-spacing: -1%;
-
-  @media (min-width: $tablet-min-width) {
-  font-size: 48px;
-  line-height: 56px;
+  @media (min-width:$desktop-min-width) {
+    gap: $homepage-gap;
   }
 }

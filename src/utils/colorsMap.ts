@@ -1,5 +1,6 @@
 export const colorMap: { [key: string]: string } = {
   black: '#000000',
+  spaceblack: '#000000',
   white: '#ffffff',
   green: '#34c759',
   yellow: '#ffcc00',

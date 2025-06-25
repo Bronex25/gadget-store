@@ -2,14 +2,13 @@
 @use '../../styles/variables.scss' as *;
 
 .footer {
-  grid-column: 1 / -1;
   margin: 0 auto;
   padding-inline: $padding-mobile;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 16px;
+  gap: $gap-medium;
   width: 100%;
   max-width: 1200px;
 
@@ -25,7 +24,6 @@
   @media (min-width: $desktop-min-width) {
     padding-inline: $padding-desktop;
   }
-
 }
 
 .logo {
@@ -40,7 +38,7 @@
 .linksWrapper {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: $gap-medium;
   width: 100%;
 
   @media (min-width: $tablet-min-width) {
@@ -51,10 +49,15 @@
 }
 
 .link {
-  all: unset;
-  cursor: pointer;
+  text-decoration: none;
   color: $color-secondary;
   font-size: 12px;
+
+  transition: color 0.3s ease-in-out;
+
+  &:hover {
+    color: $color-primary;
+  }
 }
 
 .buttonContainer {
@@ -62,7 +65,7 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  gap: 16px;
+  gap: $gap-medium;
 
   @media (min-width: $tablet-min-width) {
   justify-content: flex-end;
@@ -75,16 +78,6 @@
 }
 
 .button {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  border: 1px solid $color-icons;
-
-  background-image: url('./img/icons/arrow-up.svg');
-  background-repeat: no-repeat;
-  background-position: center;  
-
-  &:hover {
-    border-color: $color-secondary;
-  }
+  background-image: url('/img/icons/arrow-up.svg');
+  @include buttonRounded;
 }

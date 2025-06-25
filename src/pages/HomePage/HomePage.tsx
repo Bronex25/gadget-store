@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo } from 'react';
 import { Slider } from '../../components/Slider/Slider';
 import styles from './HomePage.module.scss';
+import typography from '../../styles/typography.module.scss';
 import { Categories } from '../../components/Categories';
 import { useAppSelector } from '../../app/hooks';
 import { ItemSlider } from '../../components/ItemSlider';
@@ -27,7 +28,7 @@ export const HomePage = () => {
 
   return (
     <div className={styles.homePage}>
-      <h1 className={styles.homePageTitle}>Welcome to Nice Gadgets store!</h1>
+      <h1 className={typography.heading1}>Welcome to Nice Gadgets store!</h1>
 
       <Slider />
 
