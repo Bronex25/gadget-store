@@ -1,6 +1,10 @@
 import React from 'react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { addToCard, toggleFavorites } from '../../features/productCardSlice';
+import {
+  addToCard,
+  deleteFromCart,
+  toggleFavorites,
+} from '../../features/actionButtonsSlice';
 import cn from 'classnames';
 import styles from './ActionButtons.module.scss';
 
@@ -9,16 +13,20 @@ type Props = {
 };
 
 export const ActionButtons: React.FC<Props> = React.memo(({ productId }) => {
-  const favoriteItems = useAppSelector(
-    state => state.productCard.favoritesItems,
+  const { favoritesItems, cartItems } = useAppSelector(
+    state => state.productCard,
   );
 
-  const containItem = favoriteItems.find(id => id === productId);
+  const containFavoriteItem = favoritesItems.some(id => id === productId);
+
+  const containCartItem = cartItems.some(item => item.itemId === productId);
 
   const dispatch = useAppDispatch();
 
-  const addCard = () => {
-    dispatch(addToCard({ itemId: productId, quantity: 1 }));
+  const toggleAddButton = () => {
+    return containCartItem
+      ? dispatch(deleteFromCart(productId))
+      : dispatch(addToCard({ itemId: productId, quantity: 1 }));
   };
 
   const handleToggleFavorites = () => {
@@ -27,14 +35,20 @@ export const ActionButtons: React.FC<Props> = React.memo(({ productId }) => {
 
   return (
     <div className={styles.actionButtons}>
-      <button className={styles.addButton} onClick={addCard}>
-        Add to cart
+      <button
+        className={cn(styles.addButton, {
+          [styles.addButtonActive]: containCartItem,
+        })}
+        onClick={toggleAddButton}
+      >
+        {containCartItem ? 'Selected' : 'Add to cart'}
       </button>
       <button
         className={cn(styles.favoriteButton, {
-          [styles.favoriteButtonActive]: containItem,
+          [styles.favoriteButtonActive]: containFavoriteItem,
         })}
         onClick={handleToggleFavorites}
+        aria-label="Toggle Favorite"
       ></button>
     </div>
   );

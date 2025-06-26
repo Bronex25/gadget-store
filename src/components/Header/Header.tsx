@@ -7,7 +7,7 @@ import { useAppSelector } from '../../app/hooks';
 export const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const { favoritesItems, cardItems } = useAppSelector(
+  const { favoritesItems, cartItems } = useAppSelector(
     state => state.productCard,
   );
 
@@ -57,7 +57,7 @@ export const Header: React.FC = () => {
 
         <div className={styles.shopping} onClick={handleClickLink}>
           <NavLink to="/cart" className={getLinkClass}>
-            <p className={styles.counter}>{cardItems.length}</p>
+            <p className={styles.counter}>{cartItems.length}</p>
             <img
               src="./img/icons/cart.svg"
               alt="cart"

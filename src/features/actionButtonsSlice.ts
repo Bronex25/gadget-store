@@ -3,19 +3,19 @@ import { loadFromStorage } from '../utils/storageUtils';
 
 const initialFavorites: string[] = loadFromStorage<string>('favorites');
 
-const initialCard: CardItem[] = loadFromStorage<CardItem>('card');
+const initialCart: CartItem[] = loadFromStorage<CartItem>('card');
 
-export type CardItem = {
+export type CartItem = {
   itemId: string;
   quantity: number;
 };
 
 const initialState = {
   favoritesItems: initialFavorites,
-  cardItems: initialCard,
+  cartItems: initialCart,
 };
 
-const productSlice = createSlice({
+const actionButtonsSlice = createSlice({
   name: 'item',
   initialState,
   reducers: {
@@ -35,37 +35,37 @@ const productSlice = createSlice({
       localStorage.setItem('favorites', JSON.stringify(state.favoritesItems));
     },
 
-    addToCard: (state, action: PayloadAction<CardItem>) => {
-      const itemInCard = state.cardItems.find(
+    addToCard: (state, action: PayloadAction<CartItem>) => {
+      const itemInCard = state.cartItems.find(
         item => item.itemId === action.payload.itemId,
       );
       if (itemInCard) {
         itemInCard.quantity += action.payload.quantity;
       } else {
-        state.cardItems.push(action.payload);
+        state.cartItems.push(action.payload);
       }
-      localStorage.setItem('card', JSON.stringify(state.cardItems));
+      localStorage.setItem('card', JSON.stringify(state.cartItems));
     },
 
     deleteFromCart: (state, action: PayloadAction<string>) => {
-      state.cardItems = state.cardItems.filter(
+      state.cartItems = state.cartItems.filter(
         item => item.itemId !== action.payload,
       );
-      localStorage.setItem('card', JSON.stringify(state.cardItems));
+      localStorage.setItem('card', JSON.stringify(state.cartItems));
     },
 
     reduceQuantity: (state, action: PayloadAction<string>) => {
-      const itemInCard = state.cardItems.find(
+      const itemInCard = state.cartItems.find(
         item => item.itemId === action.payload,
       );
       if (itemInCard && itemInCard.quantity > 1) {
         itemInCard.quantity -= 1;
       }
-      localStorage.setItem('card', JSON.stringify(state.cardItems));
+      localStorage.setItem('card', JSON.stringify(state.cartItems));
     },
   },
 });
 
 export const { toggleFavorites, addToCard, deleteFromCart, reduceQuantity } =
-  productSlice.actions;
-export default productSlice.reducer;
+  actionButtonsSlice.actions;
+export default actionButtonsSlice.reducer;

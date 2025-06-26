@@ -6,11 +6,11 @@ import cn from 'classnames';
 import { useAppSelector } from '../../app/hooks';
 import { Product } from '../../types/Product';
 import { ShopCard } from '../../components/ShopCard';
-import { CardItem } from '../../features/productCardSlice';
+import { CartItem } from '../../features/actionButtonsSlice';
 
 export const ShoppingCartPage: React.FC = () => {
-  const cartItems: CardItem[] = useAppSelector(
-    state => state.productCard.cardItems,
+  const cartItems: CartItem[] = useAppSelector(
+    state => state.productCard.cartItems,
   );
   const products: Product[] = useAppSelector(state => state.products.products);
   // Filter products to find those that are in the cart

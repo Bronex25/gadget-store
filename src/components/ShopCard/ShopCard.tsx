@@ -7,7 +7,7 @@ import {
   addToCard,
   deleteFromCart,
   reduceQuantity,
-} from '../../features/productCardSlice';
+} from '../../features/actionButtonsSlice';
 
 type Props = {
   id: string;

@@ -30,7 +30,7 @@ export const ProductDetailsPage: React.FC = () => {
   };
 
   useEffect(() => {
-    if (!productId || !category) {
+    if (!productId) {
       return;
     }
 
@@ -42,7 +42,7 @@ export const ProductDetailsPage: React.FC = () => {
       .catch(error => {
         console.error('Failed to fetch product:', error);
       });
-  }, [productId, category]);
+  }, [productId]);
 
   if (!product) {
     return <div>Loading...</div>;
