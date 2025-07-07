@@ -4,7 +4,7 @@ A modern, responsive online store for browsing and purchasing gadgets. Built wit
 
 ## 🚀 Live Demo
 
-👉 [Try the Gadget Store](https://bronex25.github.io/phone-store)
+👉 [Try the Gadget Store](https://bronex25.github.io/gadget-store)
 
 ## ✨ Features
 
@@ -29,3 +29,8 @@ A modern, responsive online store for browsing and purchasing gadgets. Built wit
 - `src/pages` – Application pages (e.g., Home, Product Details, Cart)
 - `src/app` – Redux store and app configuration
 - `src/styles` – Global styles and SCSS variables
+
+
+TODO: 
+
+-create modal for checkout
