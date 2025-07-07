@@ -1,0 +1,14 @@
+@use '../../styles/variables.scss' as *;
+
+.errorMessage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  max-height: 100dvh;
+  overflow: hidden;
+
+  img {
+    object-fit: contain;
+  }
+}

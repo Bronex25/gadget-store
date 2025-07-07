@@ -16,6 +16,8 @@ import { useAppSelector } from '../../app/hooks';
 export const ProductDetailsPage: React.FC = () => {
   const [product, setProduct] = useState<ProductDetails | null>(null);
   const [mainImage, setMainImage] = useState('');
+  const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const { products } = useAppSelector(state => state.products);
   const location = useLocation();
@@ -42,6 +44,8 @@ export const ProductDetailsPage: React.FC = () => {
       return;
     }
 
+    setError(false);
+    setLoading(true);
     fetchProductDetails(productId, category)
       .then((prod: ProductDetails[]) => {
         setProduct(prod[0]);
@@ -49,11 +53,23 @@ export const ProductDetailsPage: React.FC = () => {
       })
       .catch(error => {
         console.error('Failed to fetch product:', error);
-      });
+        setError(true);
+      })
+      .finally(() => setLoading(false));
   }, [productId]);
 
-  if (!product) {
-    return <FullPageLoader />;
+  if (loading) return <FullPageLoader />;
+
+  if (error || !product) {
+    return (
+      <main className={styles.main}>
+        <Breadcrumbs />
+        <BackButton />
+        <h1 className={styles.pageTitle}>Product not found</h1>
+        <p>Sorry, we couldn&apos;t find the product you&apos;re looking for.</p>
+        <img src="./img/product-not-found.png" alt="not found picture" />
+      </main>
+    );
   }
 
   return (

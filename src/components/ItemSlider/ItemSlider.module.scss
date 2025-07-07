@@ -14,8 +14,6 @@
   overflow-x: auto;
   scroll-behavior: smooth;
   padding-block: 16px;
-  margin-left: -10px;
-  padding-left: 10px;
 
   @media (min-width: $tablet-min-width) {
     overflow-x: hidden;
@@ -28,6 +26,7 @@
   scroll-snap-type: x mandatory;
   scroll-padding-inline: 16px;
   overflow: visible;
+
   @media (min-width: $tablet-min-width) {
     scroll-snap-type: none;
   }

@@ -1,10 +1,11 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Product } from '../types/Product';
 import { fetchFromSupabase } from '../utils/api';
+type Status = 'idle' | 'loading' | 'succeeded' | 'failed';
 
 const initialState = {
   products: [] as Product[],
-  status: 'idle', // 'idle' | 'loading' | 'succeeded' | 'failed'
+  status: 'idle' as Status,
 };
 
 export const fetchProducts = createAsyncThunk(

@@ -3,7 +3,7 @@ import { loadFromStorage } from '../utils/storageUtils';
 
 const initialFavorites: string[] = loadFromStorage<string>('favorites');
 
-const initialCart: CartItem[] = loadFromStorage<CartItem>('card');
+const initialCart: CartItem[] = loadFromStorage<CartItem>('cart');
 
 export type CartItem = {
   itemId: string;
@@ -44,14 +44,14 @@ const actionButtonsSlice = createSlice({
       } else {
         state.cartItems.push(action.payload);
       }
-      localStorage.setItem('card', JSON.stringify(state.cartItems));
+      localStorage.setItem('cart', JSON.stringify(state.cartItems));
     },
 
     deleteFromCart: (state, action: PayloadAction<string>) => {
       state.cartItems = state.cartItems.filter(
         item => item.itemId !== action.payload,
       );
-      localStorage.setItem('card', JSON.stringify(state.cartItems));
+      localStorage.setItem('cart', JSON.stringify(state.cartItems));
     },
 
     reduceQuantity: (state, action: PayloadAction<string>) => {
@@ -61,7 +61,7 @@ const actionButtonsSlice = createSlice({
       if (itemInCard && itemInCard.quantity > 1) {
         itemInCard.quantity -= 1;
       }
-      localStorage.setItem('card', JSON.stringify(state.cartItems));
+      localStorage.setItem('cart', JSON.stringify(state.cartItems));
     },
   },
 });

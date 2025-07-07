@@ -11,21 +11,10 @@ type Props = {
 export const ItemSlider: React.FC<Props> = ({ productsToShow, title }) => {
   const sliderRef = useRef<HTMLDivElement>(null);
 
-  const [cardWidth, setCardWidth] = useState(0);
   const [isLeftDisabled, setIsLeftDisabled] = useState(true);
   const [isRightDisabled, setIsRightDisabled] = useState(false);
 
   useEffect(() => {
-    const updateCardWidthAndScroll = () => {
-      const card = sliderRef.current?.querySelector('article') as HTMLElement;
-
-      if (card) {
-        setCardWidth(card.offsetWidth + 8);
-      }
-
-      updateButtonState();
-    };
-
     const updateButtonState = () => {
       const slider = sliderRef.current;
       if (!slider) return;
@@ -35,14 +24,9 @@ export const ItemSlider: React.FC<Props> = ({ productsToShow, title }) => {
       setIsLeftDisabled(scrollLeft <= 0);
       setIsRightDisabled(scrollLeft + clientWidth >= scrollWidth - 1); // small buffer
     };
-
-    updateCardWidthAndScroll();
-
-    window.addEventListener('resize', updateCardWidthAndScroll);
     sliderRef.current?.addEventListener('scroll', updateButtonState);
 
     return () => {
-      window.removeEventListener('resize', updateCardWidthAndScroll);
       sliderRef.current?.removeEventListener('scroll', updateButtonState);
     };
   }, [productsToShow]);
@@ -50,7 +34,10 @@ export const ItemSlider: React.FC<Props> = ({ productsToShow, title }) => {
   const scroll = (dir: 'left' | 'right') => {
     if (sliderRef.current) {
       sliderRef.current.scrollBy({
-        left: dir === 'left' ? -cardWidth : cardWidth,
+        left:
+          dir === 'left'
+            ? -sliderRef.current.clientWidth
+            : sliderRef.current.clientWidth,
         behavior: 'smooth',
       });
     }

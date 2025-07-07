@@ -18,14 +18,18 @@
   border-radius: 8px;
   background-color: #fff;
   color: $color-primary;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: border 0.3s ease-in-out;
 
   @media (min-width: $tablet-min-width) {
     flex: 0 0 calc(33.333% - 8px);
+
+    &:hover .image {
+    transform: scale(1.05);
+    }
+
     &:hover {
-    box-shadow: 0px 3px 13px rgba(23, 32, 49, 0.2);
-    transform: scale(1.02);
-  } // 3 per row
+      border-color: $color-icons;
+    }
   }
 
   @media (min-width: $desktop-min-width) {
@@ -56,6 +60,7 @@
   @media (min-width: $tablet-min-width) {
     height: 196px;
     max-height: 196px;
+    transition: transform 0.3s ease;
   }
 }
 

@@ -13,6 +13,7 @@ import { Product } from './types/Product';
 import { ProductDetailsPage } from './pages/ProducDetailsPage/ProductDetailsPage';
 import { ShoppingCartPage } from './pages/ShoppingCartPage/ShoppingCartPage';
 import { NotFoundPage } from './pages/NotFoundPage/NotFoundPage';
+import { ErrorMessage } from './components/ErrorMessage';
 
 export const App: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -36,6 +37,10 @@ export const App: React.FC = () => {
   useEffect(() => {
     dispatch(fetchProducts());
   }, []);
+
+  if (status === 'failed') {
+    return <ErrorMessage />;
+  }
 
   return (
     <div className="layout">
