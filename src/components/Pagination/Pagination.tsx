@@ -13,6 +13,38 @@ export const Pagination: React.FC<Props> = ({
   currentPage,
   handleLink,
 }) => {
+  const getPageNumbers = (
+    current: number,
+    total: number,
+  ): (number | string)[] => {
+    const pages: (number | string)[] = [];
+
+    if (total <= 7) {
+      return Array.from({ length: total }, (_, i) => i + 1);
+    }
+
+    pages.push(1);
+
+    if (current > 4) {
+      pages.push('...');
+    }
+
+    const start = Math.max(2, current - 1);
+    const end = Math.min(total - 1, current + 1);
+
+    for (let i = start; i <= end; i++) {
+      pages.push(i);
+    }
+
+    if (current < total - 3) {
+      pages.push('...');
+    }
+
+    pages.push(total);
+
+    return pages;
+  };
+
   return (
     <>
       <ul className={styles.pagination}>
@@ -23,17 +55,21 @@ export const Pagination: React.FC<Props> = ({
           onClick={() => handleLink(currentPage - 1)}
         ></li>
 
-        {Array.from({ length: maxPages }).map((_, index) => (
-          <li
-            className={cn(styles.button, {
-              [styles.active]: currentPage === index + 1,
-            })}
-            key={index}
-            onClick={() => handleLink(index + 1)}
-          >
-            {index + 1}
-          </li>
-        ))}
+        {getPageNumbers(currentPage, maxPages).map((item, index) =>
+          item === '...' ? (
+            <li key={`dots-${index}`}>...</li>
+          ) : (
+            <li
+              className={cn(styles.button, {
+                [styles.active]: currentPage === item,
+              })}
+              key={`page-${item}`}
+              onClick={() => handleLink(item as number)}
+            >
+              {item}
+            </li>
+          ),
+        )}
 
         <li
           className={cn(styles.button, styles.next, {
