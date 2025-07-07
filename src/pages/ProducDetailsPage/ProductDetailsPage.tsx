@@ -10,16 +10,24 @@ import { Specs } from '../../components/Specs';
 import { ItemSlider } from '../../components/ItemSlider';
 import { colorMap } from '../../utils/colorsMap';
 import { BackButton } from '../../components/BackButton';
+import FullPageLoader from '../../components/Loader/FullPageLoader';
+import { useAppSelector } from '../../app/hooks';
 
 export const ProductDetailsPage: React.FC = () => {
   const [product, setProduct] = useState<ProductDetails | null>(null);
   const [mainImage, setMainImage] = useState('');
 
+  const { products } = useAppSelector(state => state.products);
   const location = useLocation();
   const navigate = useNavigate();
-
   const { productId } = useParams<{ productId: string }>();
   const category = location.pathname.split('/')[1] as Category;
+
+  const getRecommendedItems = () => {
+    const shuffled = [...products].sort(() => 0.5 - Math.random());
+
+    return shuffled.slice(0, 16);
+  };
 
   const handleClickOption = ({
     color = product?.data.color,
@@ -45,7 +53,7 @@ export const ProductDetailsPage: React.FC = () => {
   }, [productId]);
 
   if (!product) {
-    return <div>Loading...</div>;
+    return <FullPageLoader />;
   }
 
   return (
@@ -104,7 +112,7 @@ export const ProductDetailsPage: React.FC = () => {
 
             <ul className={styles.capacityList}>
               {product.data.capacityAvailable.map(capacity => (
-                <li key={capacity} className={styles.capacity}>
+                <li key={capacity}>
                   <button
                     className={cn(styles.capacityButton, {
                       [styles.capacityButtonActive]:
@@ -150,7 +158,7 @@ export const ProductDetailsPage: React.FC = () => {
         <section className={styles.sectionAbout}>
           <h2 className={styles.secondTitle}>About</h2>
           {product.data.description.map(description => (
-            <React.Fragment key={description.title}>
+            <React.Fragment key={description.text[1]}>
               <h3 className={styles.title}>{description.title}</h3>
               <p className={styles.text}>{description.text}</p>
             </React.Fragment>
@@ -173,7 +181,10 @@ export const ProductDetailsPage: React.FC = () => {
         </section>
       </section>
 
-      <ItemSlider productsToShow={[]} title="You may also like"></ItemSlider>
+      <ItemSlider
+        productsToShow={getRecommendedItems()}
+        title="You may also like"
+      ></ItemSlider>
     </main>
   );
 };

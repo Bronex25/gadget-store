@@ -17,4 +17,10 @@
   background-image: url('/img/icons/arrow-left.svg');
   background-position: left center;
   background-repeat: no-repeat;
+
+  transition: color 0.3s ease-in-out;
+
+  &:hover {
+    color: $color-primary;
+  }
 }

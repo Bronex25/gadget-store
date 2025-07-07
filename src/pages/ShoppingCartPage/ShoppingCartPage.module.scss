@@ -81,3 +81,17 @@
   color: $color-secondary;
 }
 
+.emptyCart {
+  @include center-content();
+  flex-direction: column;
+  max-height: 50vh;
+
+  @media screen and (min-width: $tablet-min-width) {
+    flex-direction: row;
+  }
+}
+
+.emptyImg {
+  height: 100%;
+  max-width: 100%;
+}

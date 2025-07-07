@@ -12,6 +12,7 @@ import FullPageLoader from './components/Loader/FullPageLoader';
 import { Product } from './types/Product';
 import { ProductDetailsPage } from './pages/ProducDetailsPage/ProductDetailsPage';
 import { ShoppingCartPage } from './pages/ShoppingCartPage/ShoppingCartPage';
+import { NotFoundPage } from './pages/NotFoundPage/NotFoundPage';
 
 export const App: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -77,10 +78,7 @@ export const App: React.FC = () => {
             ></Route>
             <Route path="favorites" element={<FavoritesPage />}></Route>
             <Route path="cart" element={<ShoppingCartPage />}></Route>
-            <Route
-              path="*"
-              element={<h1 className="title">Page not found</h1>}
-            />
+            <Route path="*" element={<NotFoundPage />} />
           </Routes>
         )}
       </main>

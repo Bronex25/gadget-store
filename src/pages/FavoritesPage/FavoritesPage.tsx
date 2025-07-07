@@ -2,7 +2,11 @@ import React from 'react';
 import { useAppSelector } from '../../app/hooks';
 import { ProductCard } from '../../components/ProductCard';
 import styles from './FavoritesPage.module.scss';
-import typography from '../../styles/typography.module.scss';
+import {
+  bodyText,
+  heading1,
+  heading2,
+} from '../../styles/typography.module.scss';
 import { Breadcrumbs } from '../../components/Breadcrumbs';
 import cn from 'classnames';
 
@@ -21,17 +25,21 @@ export const FavoritesPage: React.FC = () => {
       <Breadcrumbs />
 
       <div>
-        <h1 className={typography.heading1}>Favorites</h1>
+        <h1 className={heading1}>Favorites</h1>
         <span
-          className={cn(typography.bodyText, styles.items)}
+          className={cn(bodyText, styles.items)}
         >{`${favoriteProductIds.length} models`}</span>
       </div>
 
-      <div className={styles.itemList}>
-        {favoriteProducts.map(item => (
-          <ProductCard product={item} key={item.id} />
-        ))}
-      </div>
+      {favoriteProductIds.length === 0 ? (
+        <h2 className={heading2}>No favorites yet</h2>
+      ) : (
+        <div className={styles.itemList}>
+          {favoriteProducts.map(item => (
+            <ProductCard product={item} key={item.id} />
+          ))}
+        </div>
+      )}
     </div>
   );
 };

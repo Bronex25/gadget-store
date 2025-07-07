@@ -42,35 +42,45 @@ export const ShoppingCartPage: React.FC = () => {
       <BackButton />
 
       <h1 className={typhography.heading1}>Cart</h1>
-
-      <div className={styles.contentContainer}>
-        <ul className={styles.cartList}>
-          {itemsInCart.map(item => (
-            <li key={item.itemId}>
-              <ShopCard
-                id={item.itemId}
-                name={item.name}
-                price={item.price}
-                image={item.image}
-                quantity={item.quantity}
-              />
-            </li>
-          ))}
-        </ul>
-
-        <div className={styles.checkout}>
-          <div className={styles.priceContainer}>
-            <h2 className={typhography.heading2}>{`$${totalPrice}`}</h2>
-            <p className={cn(typhography.bodyText, styles.itemsCount)}>
-              {`Total for ${itemsInCart.length} items`}
-            </p>
-          </div>
-
-          <button className={cn(typhography.buttonsText, styles.button)}>
-            Checkout
-          </button>
+      {cartItems.length === 0 ? (
+        <div className={styles.emptyCart}>
+          <h2 className={typhography.heading2}>Cart is empty</h2>
+          <img
+            className={styles.emptyImg}
+            src="./img/cart-is-empty.png"
+            alt="Zero items"
+          />
         </div>
-      </div>
+      ) : (
+        <div className={styles.contentContainer}>
+          <ul className={styles.cartList}>
+            {itemsInCart.map(item => (
+              <li key={item.itemId}>
+                <ShopCard
+                  id={item.itemId}
+                  name={item.name}
+                  price={item.price}
+                  image={item.image}
+                  quantity={item.quantity}
+                />
+              </li>
+            ))}
+          </ul>
+
+          <div className={styles.checkout}>
+            <div className={styles.priceContainer}>
+              <h2 className={typhography.heading2}>{`$${totalPrice}`}</h2>
+              <p className={cn(typhography.bodyText, styles.itemsCount)}>
+                {`Total for ${itemsInCart.length} items`}
+              </p>
+            </div>
+
+            <button className={cn(typhography.buttonsText, styles.button)}>
+              Checkout
+            </button>
+          </div>
+        </div>
+      )}
     </main>
   );
 };

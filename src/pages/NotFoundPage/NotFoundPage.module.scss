@@ -1,0 +1,46 @@
+@use '../../styles/mixins.scss' as *;
+@use '../../styles/variables.scss' as *;
+
+.notFoundPage {
+  @include pageStyle();
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.content {
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.title {
+  font-size: 32px;
+  font-weight: 700;
+  color: $color-primary;
+}
+
+.subtitle {
+  font-size: 18px;
+  color: $color-secondary;
+}
+
+.homeLink {
+  display: inline-block;
+  width: 180px;
+  padding: 12px 24px;
+  margin: 0 auto;
+  font-weight: 600;
+  background-color: $color-accent;
+  color: $color-white;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: darken($color-accent, 5%);
+  }
+}
