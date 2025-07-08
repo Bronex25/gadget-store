@@ -8,12 +8,14 @@ A modern, responsive online store for browsing and purchasing gadgets. Built wit
 
 ## ✨ Features
 
-- Browse a list of available gadgets
-- View detailed phone information
-- Add and remove phones from the shopping cart
-- Global state management with Redux Toolkit
-- Responsive UI design for mobile and desktop
-- Built with TypeScript and powered by Vite for lightning-fast builds
+-	🛍 Browse phones, tablets, and accessories
+-	📱 View detailed product pages with specs, colors, and capacities
+-	🧩 Add/remove items from shopping cart and favorites
+-	🔄 Sorting, pagination, and filtering by category
+-	🧠 Global state management using Redux Toolkit
+-	💬 Product data fetched from a Supabase-powered REST API
+-	⚡ Smooth UI transitions and interactions
+-	📱 Fully responsive design for mobile and desktop
 
 ## 🛠 Tech Stack
 
@@ -22,6 +24,7 @@ A modern, responsive online store for browsing and purchasing gadgets. Built wit
 - TypeScript
 - SCSS Modules
 - Vite
+- Supabase – Backend as a service (API + data management)
 
 ## 📂 Project Structure
 
