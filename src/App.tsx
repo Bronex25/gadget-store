@@ -14,6 +14,7 @@ import { ProductDetailsPage } from './pages/ProducDetailsPage/ProductDetailsPage
 import { ShoppingCartPage } from './pages/ShoppingCartPage/ShoppingCartPage';
 import { NotFoundPage } from './pages/NotFoundPage/NotFoundPage';
 import { ErrorMessage } from './components/ErrorMessage';
+import { ScrollToTop } from './components/ScrollToTop';
 
 export const App: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -44,6 +45,7 @@ export const App: React.FC = () => {
 
   return (
     <div className="layout">
+      <ScrollToTop />
       <Header></Header>
 
       <main className="container">

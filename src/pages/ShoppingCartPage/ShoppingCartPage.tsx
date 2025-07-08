@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 import styles from './ShoppingCartPage.module.scss';
 import typhography from '../../styles/typography.module.scss';
 import { BackButton } from '../../components/BackButton';
@@ -7,12 +7,16 @@ import { useAppSelector } from '../../app/hooks';
 import { Product } from '../../types/Product';
 import { ShopCard } from '../../components/ShopCard';
 import { CartItem } from '../../features/actionButtonsSlice';
+import { CheckoutModal } from '../../components/CheckoutModal';
 
 export const ShoppingCartPage: React.FC = () => {
   const cartItems: CartItem[] = useAppSelector(
     state => state.productCard.cartItems,
   );
   const products: Product[] = useAppSelector(state => state.products.products);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const closeModal = useCallback(() => setModalIsOpen(false), []);
+
   // Filter products to find those that are in the cart
   // and map them to include the quantity from the cart
   const itemsInCart = cartItems
@@ -40,6 +44,7 @@ export const ShoppingCartPage: React.FC = () => {
   return (
     <main className={styles.shoppingCartPage}>
       <BackButton />
+      {modalIsOpen && <CheckoutModal closeModal={closeModal} />}
 
       <h1 className={typhography.heading1}>Cart</h1>
       {cartItems.length === 0 ? (
@@ -62,6 +67,7 @@ export const ShoppingCartPage: React.FC = () => {
                   price={item.price}
                   image={item.image}
                   quantity={item.quantity}
+                  category={item.category}
                 />
               </li>
             ))}
@@ -75,7 +81,10 @@ export const ShoppingCartPage: React.FC = () => {
               </p>
             </div>
 
-            <button className={cn(typhography.buttonsText, styles.button)}>
+            <button
+              className={cn(typhography.buttonsText, styles.button)}
+              onClick={() => setModalIsOpen(true)}
+            >
               Checkout
             </button>
           </div>

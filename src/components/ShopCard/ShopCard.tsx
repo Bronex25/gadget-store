@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './ShopCard.module.scss';
-import typography from '../../styles/typography.module.scss';
+import { bodyText, heading2 } from '../../styles/typography.module.scss';
 import cn from 'classnames';
 import { useAppDispatch } from '../../app/hooks';
 import {
@@ -8,6 +8,7 @@ import {
   deleteFromCart,
   reduceQuantity,
 } from '../../features/actionButtonsSlice';
+import { Link } from 'react-router-dom';
 
 type Props = {
   id: string;
@@ -15,6 +16,7 @@ type Props = {
   price: number;
   image: string;
   quantity: number;
+  category: string;
 };
 
 export const ShopCard: React.FC<Props> = ({
@@ -23,6 +25,7 @@ export const ShopCard: React.FC<Props> = ({
   price,
   image,
   quantity,
+  category,
 }) => {
   const dispatch = useAppDispatch();
 
@@ -40,13 +43,13 @@ export const ShopCard: React.FC<Props> = ({
 
   return (
     <div className={styles.shopCard}>
-      <div className={styles.containerWithImage}>
+      <Link to={`/${category}/${id}`} className={styles.containerWithImage}>
         <button className={styles.deleteButton} onClick={handleDelete}></button>
         <div className={styles.imageContainer}>
           <img src={image} alt="item image" className={styles.image} />
         </div>
-        <p className={typography.bodyText}>{name}</p>
-      </div>
+        <p className={bodyText}>{name}</p>
+      </Link>
 
       <div className={styles.containerWithPrice}>
         <div className={styles.quantityContainer}>
@@ -55,11 +58,11 @@ export const ShopCard: React.FC<Props> = ({
             disabled={quantity <= 1}
             onClick={handleDecrement}
           ></button>
-          <p className={cn(typography.bodyText, styles.quantity)}>{quantity}</p>
+          <p className={cn(bodyText, styles.quantity)}>{quantity}</p>
           <button className={styles.plus} onClick={handleIncrement}></button>
         </div>
 
-        <h2 className={cn(typography.heading2, styles.price)}>{`$${price}`}</h2>
+        <h2 className={cn(heading2, styles.price)}>{`$${price}`}</h2>
       </div>
     </div>
   );

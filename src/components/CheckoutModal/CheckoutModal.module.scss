@@ -1,0 +1,53 @@
+@use '../../styles/mixins.scss' as *;
+@use '../../styles/variables.scss' as *;
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal {
+  background-color: white;
+  padding: 32px;
+  border-radius: 12px;
+  max-width: 600px;
+  width: 100%;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+
+
+.cancel,
+.confirm {
+  color: white;
+  text-align: center;
+  width: 20%;
+  border: $border-elements;
+  margin-top: 32px;
+  border-radius: 8px;
+  cursor: pointer;
+  min-width: 62px;
+}
+
+.cancel {
+  background-color: red;
+  margin-left: 15px;
+  &:hover {
+    background-color: darkred;
+  }
+}
+.confirm {
+  background-color: $color-accent;
+  &:hover {
+    background-color: darkblue;
+  }
+}

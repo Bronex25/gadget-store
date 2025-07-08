@@ -63,9 +63,18 @@ const actionButtonsSlice = createSlice({
       }
       localStorage.setItem('cart', JSON.stringify(state.cartItems));
     },
+    clearCart: state => {
+      localStorage.removeItem('cart');
+      state.cartItems = [];
+    },
   },
 });
 
-export const { toggleFavorites, addToCard, deleteFromCart, reduceQuantity } =
-  actionButtonsSlice.actions;
+export const {
+  toggleFavorites,
+  addToCard,
+  deleteFromCart,
+  reduceQuantity,
+  clearCart,
+} = actionButtonsSlice.actions;
 export default actionButtonsSlice.reducer;
